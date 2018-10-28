@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace Color_yr.Countdown
 {
@@ -14,7 +15,12 @@ namespace Color_yr.Countdown
         public mian()
         {
             InitializeComponent();
+
         }
+        [DllImport("user32.dll", EntryPoint = "SetParent")]
+        public static extern int SetParent(int hWndChild, int hWndNewParent);
+        [DllImport("user32.dll", EntryPoint = "FindWindow")]
+        public static extern int FindWindow(string lpClassName, string lpWindowName);
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -68,6 +74,7 @@ namespace Color_yr.Countdown
             Y = Height;
             setTag(this);
             sethight();
+            SetParent(this.Handle.ToInt32(), FindWindow("Progman", "Program Manager"));
         }
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
