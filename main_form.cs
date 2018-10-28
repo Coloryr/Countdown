@@ -33,6 +33,11 @@ namespace Color_yr.Countdown
             }
             var target = new DateTime(year, month, day);
             var now = DateTime.Now;
+            if (target < now)
+            {
+                MessageBox.Show("时间错误，请重新设置");
+                return;
+            }
             var delta = target - now;
 
             Action<int> action = (data) =>

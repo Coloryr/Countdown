@@ -120,6 +120,8 @@ namespace Color_yr.Countdown
 
         private void TextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == '\b')//这是允许输入退格键
+                return;
             string test = textBox1.Text + e.KeyChar;
             if (isok(9999, e, test) == false)
                 e.Handled = true;
@@ -128,6 +130,8 @@ namespace Color_yr.Countdown
         }
         private void TextBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == '\b')//这是允许输入退格键
+                return;
             string test = textBox2.Text + e.KeyChar;
             if (isok(9999, e, test) == false)
                 e.Handled = true;
@@ -136,6 +140,8 @@ namespace Color_yr.Countdown
         }
         private void TextBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == '\b')//这是允许输入退格键
+                return;
             string test = textBox3.Text + e.KeyChar;
             if (isok(12, e, test) == false)
                 e.Handled = true;
@@ -144,6 +150,8 @@ namespace Color_yr.Countdown
         }
         private void TextBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == '\b')//这是允许输入退格键
+                return;
             DateTime dt = DateTime.Now;
             string test = textBox4.Text + e.KeyChar;
             int da = SetDate(dt.ToString());
@@ -154,6 +162,8 @@ namespace Color_yr.Countdown
         }
         private void TextBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == '\b')//这是允许输入退格键
+                return;
             string test = textBox5.Text + e.KeyChar;
             if (isok(1000, e, test) == false)
                 e.Handled = true;
@@ -162,6 +172,8 @@ namespace Color_yr.Countdown
         }
         private void TextBox6_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == '\b')//这是允许输入退格键
+                return;
             string test = textBox6.Text + e.KeyChar;
             if (isok(1000, e, test) == false)
                 e.Handled = true;
