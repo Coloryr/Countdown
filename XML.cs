@@ -96,7 +96,7 @@ namespace Color_yr.Countdown
                     xe.Save(applocal + text);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 if (MessageBox.Show("配置文件在读取时发发生了错误，是否要删除原来的配置文件再新生成一个？", "配置文件错误", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -129,7 +129,7 @@ namespace Color_yr.Countdown
                     xe.Save(applocal + text);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("写文件错误，请检查", "配置文件错误");
             }
@@ -180,11 +180,8 @@ namespace Color_yr.Countdown
                 a = xnP.InnerText;
                 if (a == "") a = null;
             }
-            catch (Exception ex)
-            {
-                //CreateFile(text, 0);
-                //MessageBox.Show(ex.ToString());
-            }
+            catch (Exception)
+            { }
             return a;
         }
     }

@@ -1,47 +1,50 @@
 ﻿using System;
-using System.Drawing;
+using System.ComponentModel;
 using System.Windows.Forms;
 using System.Threading;
+using System.Drawing;
 
 namespace Color_yr.Countdown
 {
-    public partial class mian : Form
+    public partial class time_form : Form
     {
-        private Form setting = new setting_form();
-        private Form time = new time_form();
         private float X_form, Y_form;
-        public mian()
+        private static int time_h, time_m;
+        public time_form()
         {
             InitializeComponent();
         }
 
-        private void mian_Load(object sender, EventArgs e)
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (true)
+            {
+                try
+                {
+                    var now_time = DateTime.Now;
+                    time_h = now_time.Hour;
+                    time_m = now_time.Minute;
+                    start();
+                    Thread.Sleep(1000);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+        }
+        private void time_form_Load(object sender, EventArgs e)
         {
             try
             {
-                notifyIcon1.Visible = true; //使托盘图标可见           
-                use.start();
                 X_form = Width;
                 Y_form = Height;
                 setTag(this);
-                time = new time_form();
-                time.Show();
                 backgroundWorker1.RunWorkerAsync();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-            }
-        }
-
-        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (setting.Visible == true)
-                return;
-            else
-            {
-                setting = new setting_form();
-                setting.Show();
             }
         }
 
@@ -77,52 +80,33 @@ namespace Color_yr.Countdown
                 }
             }
         }
-
-        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private void start()
         {
-            while (true)
-            {
-                try
-                {
-                    start();
-                    GC.Collect();
-                    Thread.Sleep(1000);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-            }
-        }
-
-        public void start()
-        {
-            var set_time = new DateTime(use.year, use.month, use.day, 0, 0, 0);
-            var now = DateTime.Now;
-            var now_time = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0);
-            if (set_time < now_time)
-            {
-                MessageBox.Show("时间错误，请重新设置");
-                return;
-            }
-            var delta = set_time - now_time;
-
             Action<int> action = (data) =>
             {
-                if (WindowState == FormWindowState.Minimized)      //如果窗口大小发生改变后变成最小化，则将窗口重新设置为正常大小
+                string h, m;
+                if (WindowState == FormWindowState.Minimized || use.time_enable == true)      //如果窗口大小发生改变后变成最小化，则将窗口重新设置为正常大小
                 {
                     Show();
                     WindowState = FormWindowState.Normal;
                 }
-                if (use.restart == true)
-                {                                      
-                    Width = use.Width;
-                    Height = use.Height;
+                if (time_h < 10)
+                    h = "0" + time_h.ToString();
+                else
+                    h = time_h.ToString();
+                if (time_m < 10)
+                    m = "0" + time_m.ToString();
+                else
+                    m = time_m.ToString();
+                label1.Text = h + ":" + m;
+                if (use.time_restart == true)
+                { 
+                    Width = use.time_Width;
+                    Height = use.time_Height;
                     float newx = Width / X_form;//当前宽度与变化前宽度之比
                     float newy = Height / Y_form;//当前高度与变化前宽度之比
-                    label2.Text = delta.Days.ToString();
                     setControls(newx, newy, this);
-                    switch (use.local)
+                    switch (use.time_local)
                     {
                         case 1:
                             Left = 0;
@@ -141,9 +125,16 @@ namespace Color_yr.Countdown
                             Top = Screen.PrimaryScreen.WorkingArea.Height - Height;
                             break;
                     }
-                    Hide();
-                    Show();
-                    use.restart = false;
+                    if (use.time_enable == true)
+                    {
+                        Hide();
+                        Show();
+                    }
+                    else
+                    {
+                        Hide();
+                    }
+                    use.time_restart = false;
                 }
             };
             Invoke(action, 0);
