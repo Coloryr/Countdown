@@ -51,6 +51,11 @@ namespace Color_yr.Countdown
                 label2.Text = delta.Days.ToString();
             };
             Invoke(action, 0);
+
+            while(true)
+            {
+
+            }
         }
 
         private void mian_Load(object sender, EventArgs e)

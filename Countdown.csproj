@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="mian.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="use.cs" />
     <Compile Include="XML.cs" />
     <EmbeddedResource Include="setting_form.resx">
       <DependentUpon>setting_form.cs</DependentUpon>
