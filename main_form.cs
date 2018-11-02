@@ -23,20 +23,7 @@ namespace Color_yr.Countdown
         public static extern int FindWindow(string lpClassName, string lpWindowName);
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            int year, month, day;
-            if (XML.read(XML.config, "自定义时间") == "false")
-            {
-                int.TryParse(XML.read(XML.config, "设置年份"), out year);
-                month = 6;
-                day = 7;
-            }
-            else
-            {
-                int.TryParse(XML.read(XML.config, "设置年"), out year);
-                int.TryParse(XML.read(XML.config, "设置月"), out month);
-                int.TryParse(XML.read(XML.config, "设置日"), out day);
-            }
+        {            
             var target = new DateTime(year, month, day);
             var now = DateTime.Now;
             if (target < now)
@@ -51,27 +38,11 @@ namespace Color_yr.Countdown
                 label2.Text = delta.Days.ToString();
             };
             Invoke(action, 0);
-
-            while(true)
-            {
-
-            }
         }
 
         private void mian_Load(object sender, EventArgs e)
         {
-            notifyIcon1.Visible = true; //使托盘图标可见
-            if (XML.read(XML.config, "设置年份") == null)
-            {
-                XML.write(XML.config, "设置年份", "2019");
-                XML.write(XML.config, "设置年份", "2019");
-                XML.write(XML.config, "设置年", "2019");
-                XML.write(XML.config, "设置月", "6");
-                XML.write(XML.config, "设置日", "7");
-                XML.write(XML.config, "设置长", "668");
-                XML.write(XML.config, "设置高", "450");
-                XML.write(XML.config, "自定义时间", "false");
-            }
+            notifyIcon1.Visible = true; //使托盘图标可见           
             backgroundWorker1.RunWorkerAsync();
             Left = Screen.PrimaryScreen.WorkingArea.Width - this.Width;
             Top = 0;

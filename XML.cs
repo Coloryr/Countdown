@@ -99,8 +99,39 @@ namespace Color_yr.Countdown
             catch (Exception ex)
             {
                 if (MessageBox.Show("配置文件在读取时发发生了错误，是否要删除原来的配置文件再新生成一个？", "配置文件错误", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
                     CreateFile(text, 0);
-                //sMessageBox.Show(ex.ToString());
+                    rewaite(text, data, data1);
+                }
+            }
+        }
+
+        private static void rewaite(string text, string data, string data1)
+        {
+            try
+            {
+                string a = read(text, data);
+                if (a != null)
+                {
+                    setXml(text, data, data1);
+                }
+                else
+                {
+                    ///导入XML文件
+                    XElement xe = XElement.Load(applocal + text);
+                    ///创建一个新的节点
+                    XElement student = new XElement("config",
+                     new XAttribute("int", data),                    ///添加属性number
+             new XElement("data", data1)                     ///添加元素Name
+             );
+                    ///添加节点到文件中，并保存
+                    xe.Add(student);
+                    xe.Save(applocal + text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("写文件错误，请检查", "配置文件错误");
             }
         }
         /// <summary>
