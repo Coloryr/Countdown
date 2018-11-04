@@ -42,7 +42,6 @@ namespace Color_yr.Countdown
                 Y_form = Height;
                 setTag(this);
                 backgroundWorker1.RunWorkerAsync();
-                MessageBox.Show(Width.ToString() + "|" + Height.ToString());
             }
             catch (Exception ex)
             {
