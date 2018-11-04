@@ -37,10 +37,12 @@ namespace Color_yr.Countdown
         {
             try
             {
+                Width = 300;
                 X_form = Width;
                 Y_form = Height;
                 setTag(this);
                 backgroundWorker1.RunWorkerAsync();
+                MessageBox.Show(Width.ToString() + "|" + Height.ToString());
             }
             catch (Exception ex)
             {
@@ -103,8 +105,8 @@ namespace Color_yr.Countdown
                 { 
                     Width = use.time_Width;
                     Height = use.time_Height;
-                    float newx = Width / X_form;//当前宽度与变化前宽度之比
-                    float newy = Height / Y_form;//当前高度与变化前宽度之比
+                    float newx = use.time_Width / X_form;//当前宽度与变化前宽度之比
+                    float newy = use.time_Height / Y_form;//当前高度与变化前宽度之比
                     setControls(newx, newy, this);
                     switch (use.time_local)
                     {

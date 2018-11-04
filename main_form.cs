@@ -8,7 +8,7 @@ namespace Color_yr.Countdown
     public partial class mian : Form
     {
         private Form setting = new setting_form();
-        private Form time = new time_form();
+        public static Form time = new time_form();
         private float X_form, Y_form;
         public mian()
         {
@@ -25,6 +25,8 @@ namespace Color_yr.Countdown
                 Y_form = Height;
                 setTag(this);
                 time = new time_form();
+                time.Width = use.time_Width;
+                time.Height = use.time_Height;
                 time.Show();
                 backgroundWorker1.RunWorkerAsync();
             }

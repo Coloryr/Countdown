@@ -179,6 +179,7 @@ namespace Color_yr.Countdown
                 time_enable = true;
             else
                 time_enable = false;
+            time_restart = true;
         }
     }
 }
