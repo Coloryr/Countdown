@@ -2,14 +2,13 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Threading;
-using System.Drawing;
+using LayeredSkin.Forms;
 
 namespace Color_yr.Countdown
 {
-    public partial class time_form : Form
+    public partial class time_form : LayeredForm
     {
         private float X_form, Y_form;
-        private static int time_h, time_m;
         public time_form()
         {
             InitializeComponent();
@@ -20,10 +19,7 @@ namespace Color_yr.Countdown
             while (true)
             {
                 try
-                {
-                    var now_time = DateTime.Now;
-                    time_h = now_time.Hour;
-                    time_m = now_time.Minute;
+                {                    
                     start();
                     Thread.Sleep(1000);
                 }
@@ -40,7 +36,7 @@ namespace Color_yr.Countdown
                 Width = 300;
                 X_form = Width;
                 Y_form = Height;
-                setTag(this);
+                use.setTag(this);
                 backgroundWorker1.RunWorkerAsync();
             }
             catch (Exception ex)
@@ -49,64 +45,42 @@ namespace Color_yr.Countdown
             }
         }
 
-        //获得控件的长度、宽度、位置、字体大小的数据
-        private void setTag(Control cons)//Control类，定义控件的基类
-        {
-            foreach (Control con in cons.Controls)
-            {
-                con.Tag = con.Width + ":" + con.Height + ":" + con.Left + ":" + con.Top + ":" + con.Font.Size;//获取或设置包含有关控件的数据的对象
-                if (con.Controls.Count > 0)
-                    setTag(con);//递归算法
-            }
-        }
-
-        private void setControls(float newx, float newy, Control cons)//实现控件以及字体的缩放
-        {
-            foreach (Control con in cons.Controls)
-            {
-                string[] mytag = con.Tag.ToString().Split(new char[] { ':' });
-                float a = Convert.ToSingle(mytag[0]) * newx;
-                con.Width = (int)a;
-                a = Convert.ToSingle(mytag[1]) * newy;
-                con.Height = (int)(a);
-                a = Convert.ToSingle(mytag[2]) * newx;
-                con.Left = (int)(a);
-                a = Convert.ToSingle(mytag[3]) * newy;
-                con.Top = (int)(a);
-                float currentSize = Convert.ToSingle(mytag[4]) * newy;
-                con.Font = new Font(con.Font.Name, currentSize, con.Font.Style, con.Font.Unit);
-                if (con.Controls.Count > 0)
-                {
-                    setControls(newx, newy, con);//递归
-                }
-            }
-        }
         private void start()
         {
             Action<int> action = (data) =>
             {
-                string h, m;
+                var now_time = DateTime.Now;
+                string h, m, d, mo;
                 if (WindowState == FormWindowState.Minimized || use.time_enable == true)      //如果窗口大小发生改变后变成最小化，则将窗口重新设置为正常大小
                 {
                     Show();
                     WindowState = FormWindowState.Normal;
                 }
-                if (time_h < 10)
-                    h = "0" + time_h.ToString();
+                if (now_time.Hour < 10)
+                    h = " " + now_time.Hour.ToString();
                 else
-                    h = time_h.ToString();
-                if (time_m < 10)
-                    m = "0" + time_m.ToString();
+                    h = now_time.Hour.ToString();
+                if (now_time.Minute < 10)
+                    m = "0" + now_time.Minute.ToString();
                 else
-                    m = time_m.ToString();
+                    m = now_time.Minute.ToString();
+                if (now_time.Day < 10)
+                    d = "0" + now_time.Day.ToString();
+                else
+                    d = now_time.Day.ToString();
+                if (now_time.Month < 10)
+                    mo = " " + now_time.Month.ToString();
+                else
+                    mo = now_time.Month.ToString();
                 label1.Text = h + ":" + m;
+                label2.Text = mo + "月" + d + "日";
                 if (use.time_restart == true)
                 { 
                     Width = use.time_Width;
                     Height = use.time_Height;
                     float newx = use.time_Width / X_form;//当前宽度与变化前宽度之比
                     float newy = use.time_Height / Y_form;//当前高度与变化前宽度之比
-                    setControls(newx, newy, this);
+                    use.setControls(newx, newy, this);
                     switch (use.time_local)
                     {
                         case 1:

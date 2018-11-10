@@ -29,19 +29,30 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(time_form));
-            this.label1 = new System.Windows.Forms.Label();
+            this.label1 = new LayeredSkin.Controls.LayeredLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label2 = new LayeredSkin.Controls.LayeredLabel();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.label1.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.label1.Borders.BottomWidth = 1;
+            this.label1.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.label1.Borders.LeftWidth = 1;
+            this.label1.Borders.RightColor = System.Drawing.Color.Empty;
+            this.label1.Borders.RightWidth = 1;
+            this.label1.Borders.TopColor = System.Drawing.Color.Empty;
+            this.label1.Borders.TopWidth = 1;
+            this.label1.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("label1.Canvas")));
             this.label1.Font = new System.Drawing.Font("宋体", 180F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.HaloSize = 5;
             this.label1.Location = new System.Drawing.Point(0, -30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(705, 240);
+            this.label1.Size = new System.Drawing.Size(711, 241);
             this.label1.TabIndex = 0;
             this.label1.Text = "00:00";
             // 
@@ -52,10 +63,22 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("宋体", 80.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.label2.Borders.BottomColor = System.Drawing.Color.Empty;
+            this.label2.Borders.BottomWidth = 1;
+            this.label2.Borders.LeftColor = System.Drawing.Color.Empty;
+            this.label2.Borders.LeftWidth = 1;
+            this.label2.Borders.RightColor = System.Drawing.Color.Empty;
+            this.label2.Borders.RightWidth = 1;
+            this.label2.Borders.TopColor = System.Drawing.Color.Empty;
+            this.label2.Borders.TopWidth = 1;
+            this.label2.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("label2.Canvas")));
+            this.label2.Font = new System.Drawing.Font("宋体", 80.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label2.HaloSize = 5;
             this.label2.Location = new System.Drawing.Point(110, 186);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(481, 107);
+            this.label2.Size = new System.Drawing.Size(487, 108);
             this.label2.TabIndex = 1;
             this.label2.Text = "00月00日";
             // 
@@ -64,11 +87,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.ClientSize = new System.Drawing.Size(705, 300);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -76,7 +98,6 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "time";
-            this.TransparencyKey = System.Drawing.Color.White;
             this.Load += new System.EventHandler(this.time_form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -85,8 +106,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private LayeredSkin.Controls.LayeredLabel label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Label label2;
+        private LayeredSkin.Controls.LayeredLabel label2;
     }
 }

@@ -16,7 +16,7 @@ namespace Color_yr.Countdown
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new mian());
+            Application.Run(new Countdown());           
         }
     }
 }

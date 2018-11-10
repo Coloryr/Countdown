@@ -55,6 +55,9 @@
     <StartupObject>Color_yr.Countdown.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LayeredSkin">
+      <HintPath>lib\LayeredSkin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -72,11 +75,11 @@
     <Compile Include="setting_form.Designer.cs">
       <DependentUpon>setting_form.cs</DependentUpon>
     </Compile>
-    <Compile Include="main_form.cs">
+    <Compile Include="Countdowm_form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="main_form.Designer.cs">
-      <DependentUpon>main_form.cs</DependentUpon>
+    <Compile Include="Countdowm_form.Designer.cs">
+      <DependentUpon>Countdowm_form.cs</DependentUpon>
     </Compile>
     <Compile Include="mian.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,8 +94,8 @@
     <EmbeddedResource Include="setting_form.resx">
       <DependentUpon>setting_form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="main_form.resx">
-      <DependentUpon>main_form.cs</DependentUpon>
+    <EmbeddedResource Include="Countdowm_form.resx">
+      <DependentUpon>Countdowm_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

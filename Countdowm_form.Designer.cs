@@ -1,6 +1,6 @@
 ﻿namespace Color_yr.Countdown
 {
-    partial class mian
+    partial class Countdown
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -12,7 +12,7 @@
         /// </summary>
         /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
         protected override void Dispose(bool disposing)
-        {            
+        {
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mian));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Countdown));
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -83,7 +83,7 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
-            // mian
+            // Countdown
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -98,11 +98,10 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "mian";
+            this.Name = "Countdown";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "mian";
-            this.TransparencyKey = System.Drawing.Color.White;
             this.Load += new System.EventHandler(this.mian_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

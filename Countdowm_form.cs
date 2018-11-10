@@ -5,12 +5,11 @@ using System.Threading;
 
 namespace Color_yr.Countdown
 {
-    public partial class mian : Form
+    public partial class Countdown : Form
     {
         private Form setting = new setting_form();
-        public static Form time = new time_form();
         private float X_form, Y_form;
-        public mian()
+        public Countdown()
         {
             InitializeComponent();
         }
@@ -19,15 +18,16 @@ namespace Color_yr.Countdown
         {
             try
             {
-                notifyIcon1.Visible = true; //使托盘图标可见           
                 use.start();
+                notifyIcon1.Visible = true;               
                 X_form = Width;
                 Y_form = Height;
-                setTag(this);
-                time = new time_form();
-                time.Width = use.time_Width;
-                time.Height = use.time_Height;
-                time.Show();
+                use.setTag(this);
+                //label1.BackColor = Color.Transparent;
+                //Opacity = 0.1;
+
+                use.time_form = new time_form();
+                use.time_form.Show();
                 backgroundWorker1.RunWorkerAsync();
             }
             catch (Exception ex)
@@ -44,39 +44,6 @@ namespace Color_yr.Countdown
             {
                 setting = new setting_form();
                 setting.Show();
-            }
-        }
-
-        //获得控件的长度、宽度、位置、字体大小的数据
-        private void setTag(Control cons)//Control类，定义控件的基类
-        {
-            foreach (Control con in cons.Controls)
-            {
-                con.Tag = con.Width + ":" + con.Height + ":" + con.Left + ":" + con.Top + ":" + con.Font.Size;//获取或设置包含有关控件的数据的对象
-                if (con.Controls.Count > 0)
-                    setTag(con);//递归算法
-            }
-        }
-
-        private void setControls(float newx, float newy, Control cons)//实现控件以及字体的缩放
-        {
-            foreach (Control con in cons.Controls)
-            {
-                string[] mytag = con.Tag.ToString().Split(new char[] { ':' });
-                float a = Convert.ToSingle(mytag[0]) * newx;
-                con.Width = (int)a;
-                a = Convert.ToSingle(mytag[1]) * newy;
-                con.Height = (int)(a);
-                a = Convert.ToSingle(mytag[2]) * newx;
-                con.Left = (int)(a);
-                a = Convert.ToSingle(mytag[3]) * newy;
-                con.Top = (int)(a);
-                float currentSize = Convert.ToSingle(mytag[4]) * newy;
-                con.Font = new Font(con.Font.Name, currentSize, con.Font.Style, con.Font.Unit);
-                if (con.Controls.Count > 0)
-                {
-                    setControls(newx, newy, con);//递归
-                }
             }
         }
 
@@ -123,7 +90,7 @@ namespace Color_yr.Countdown
                     float newx = Width / X_form;//当前宽度与变化前宽度之比
                     float newy = Height / Y_form;//当前高度与变化前宽度之比
                     label2.Text = delta.Days.ToString();
-                    setControls(newx, newy, this);
+                    use.setControls(newx, newy, this);
                     switch (use.local)
                     {
                         case 1:

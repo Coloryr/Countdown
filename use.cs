@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Threading;
+using System.Drawing;
 
 namespace Color_yr.Countdown
 {
@@ -15,6 +17,8 @@ namespace Color_yr.Countdown
         public static int time_Height;
         public static int time_local;
 
+        public static Form time_form;
+
         public static bool restart = true;
         public static bool time_restart = true;
         public static bool time_enable = false;
@@ -28,6 +32,39 @@ namespace Color_yr.Countdown
                 return false;
             }
             return true;
+        }
+
+        //获得控件的长度、宽度、位置、字体大小的数据
+        public static void setTag(Control cons)//Control类，定义控件的基类
+        {
+            foreach (Control con in cons.Controls)
+            {
+                con.Tag = con.Width + ":" + con.Height + ":" + con.Left + ":" + con.Top + ":" + con.Font.Size;//获取或设置包含有关控件的数据的对象
+                if (con.Controls.Count > 0)
+                    setTag(con);//递归算法
+            }
+        }
+
+        public static void setControls(float newx, float newy, Control cons)//实现控件以及字体的缩放
+        {
+            foreach (Control con in cons.Controls)
+            {
+                string[] mytag = con.Tag.ToString().Split(new char[] { ':' });
+                float a = Convert.ToSingle(mytag[0]) * newx;
+                con.Width = (int)a;
+                a = Convert.ToSingle(mytag[1]) * newy;
+                con.Height = (int)(a);
+                a = Convert.ToSingle(mytag[2]) * newx;
+                con.Left = (int)(a);
+                a = Convert.ToSingle(mytag[3]) * newy;
+                con.Top = (int)(a);
+                float currentSize = Convert.ToSingle(mytag[4]) * newy;
+                con.Font = new Font(con.Font.Name, currentSize, con.Font.Style, con.Font.Unit);
+                if (con.Controls.Count > 0)
+                {
+                    setControls(newx, newy, con);//递归
+                }
+            }
         }
 
         //月份为两位
