@@ -101,7 +101,10 @@ namespace Color_yr.Countdown
                     Height = use.Height;
                     float newx = Width / X_form;//当前宽度与变化前宽度之比
                     float newy = Height / Y_form;//当前高度与变化前宽度之比
-                    label2.Text = delta.Days.ToString();
+                    if(delta.Days<10)
+                        label2.Text = "  "+delta.Days.ToString();
+                    else if(delta.Days < 100)
+                        label2.Text = " " + delta.Days.ToString();
                     use.setControls(newx, newy, this);
                     switch (use.local)
                     {
@@ -124,6 +127,10 @@ namespace Color_yr.Countdown
                     }
                     Hide();
                     Show();
+                    if (use.is_user == true)
+                        label1.Text = "距离考试还有：";
+                    else
+                        label1.Text = "距离高考还有：";
                     use.restart = false;
                 }
             };

@@ -22,6 +22,7 @@ namespace Color_yr.Countdown
         public static bool restart = true;
         public static bool time_restart = true;
         public static bool time_enable = false;
+        public static bool is_user = false;
 
         public static bool isok(KeyPressEventArgs e)
         {
@@ -140,6 +141,7 @@ namespace Color_yr.Countdown
                 XML.write(XML.config, "时钟-显示位置", "左上角");
             if (XML.read(XML.config, "自定义时间") == "false")
             {
+                is_user = false;
                 int.TryParse(XML.read(XML.config, "设置年份"), out year);
                 if (year > 2099 || year < 2000)
                 {
@@ -151,6 +153,7 @@ namespace Color_yr.Countdown
             }
             else
             {
+                is_user = true;
                 int.TryParse(XML.read(XML.config, "设置年"), out year);
                 if (year > 2099 || year < 2000)
                 {

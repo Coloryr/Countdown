@@ -320,7 +320,7 @@ namespace Color_yr.Countdown
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(172, 286);
+            this.ClientSize = new System.Drawing.Size(348, 286);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.checkBox1);

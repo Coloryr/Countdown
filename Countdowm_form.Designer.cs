@@ -63,7 +63,7 @@
             this.label1.Location = new System.Drawing.Point(28, 7);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(607, 81);
+            this.label1.Size = new System.Drawing.Size(489, 65);
             this.label1.TabIndex = 0;
             this.label1.Text = "距离高考还有：";
             // 
@@ -82,12 +82,13 @@
             this.label2.Canvas = ((System.Drawing.Bitmap)(resources.GetObject("label2.Canvas")));
             this.label2.Font = new System.Drawing.Font("宋体", 199.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.HaloSize = 5;
-            this.label2.Location = new System.Drawing.Point(-6, 58);
+            this.label2.Location = new System.Drawing.Point(-33, 56);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(650, 335);
+            this.label2.Size = new System.Drawing.Size(523, 268);
             this.label2.TabIndex = 1;
             this.label2.Text = "000";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label3
             // 
@@ -107,7 +108,7 @@
             this.label3.Location = new System.Drawing.Point(414, 284);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 84);
+            this.label3.Size = new System.Drawing.Size(103, 68);
             this.label3.TabIndex = 2;
             this.label3.Text = "天";
             // 
@@ -117,7 +118,7 @@
             // 
             // Countdown
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Transparent;
