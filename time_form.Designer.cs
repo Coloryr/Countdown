@@ -52,7 +52,7 @@
             this.label1.HaloSize = 5;
             this.label1.Location = new System.Drawing.Point(0, -30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(711, 241);
+            this.label1.Size = new System.Drawing.Size(886, 301);
             this.label1.TabIndex = 0;
             this.label1.Text = "00:00";
             // 
@@ -78,26 +78,27 @@
             this.label2.HaloSize = 5;
             this.label2.Location = new System.Drawing.Point(110, 186);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(487, 108);
+            this.label2.Size = new System.Drawing.Size(599, 135);
             this.label2.TabIndex = 1;
             this.label2.Text = "00月00日";
             // 
             // time_form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Transparent;
             this.ClientSize = new System.Drawing.Size(705, 300);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.DrawIcon = false;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "time_form";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "time";
+            this.Text = "";
             this.Load += new System.EventHandler(this.time_form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -55,7 +55,8 @@
     <StartupObject>Color_yr.Countdown.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LayeredSkin">
+    <Reference Include="LayeredSkin, Version=1.1.8.23874, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\LayeredSkin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -125,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Color_yr.ico" />
+    <None Include="lib\LayeredSkin.dll" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
