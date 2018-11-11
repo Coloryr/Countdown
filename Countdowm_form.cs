@@ -31,7 +31,7 @@ namespace Color_yr.Countdown
             try
             {
                 use.start();
-                notifyIcon1.Visible = true;               
+                notifyIcon1.Visible = true;
                 X_form = Width;
                 Y_form = Height;
                 use.setTag(this);
@@ -96,17 +96,17 @@ namespace Color_yr.Countdown
                     WindowState = FormWindowState.Normal;
                 }
                 if (use.restart == true)
-                {                                      
+                {
                     Width = use.Width;
                     Height = use.Height;
                     float newx = Width / X_form;//当前宽度与变化前宽度之比
                     float newy = Height / Y_form;//当前高度与变化前宽度之比
-                    if(delta.Days<10)
-                        label2.Text = "  "+delta.Days.ToString();
-                    else if(delta.Days < 100)
+                    if (delta.Days < 10)
+                        label2.Text = "  " + delta.Days.ToString();
+                    else if (delta.Days < 100)
                         label2.Text = " " + delta.Days.ToString();
                     else
-                        label2.Text = " " + delta.Days.ToString();
+                        label2.Text = delta.Days.ToString();
                     use.setControls(newx, newy, this);
                     switch (use.local)
                     {
@@ -133,6 +133,33 @@ namespace Color_yr.Countdown
                         label1.Text = "距离考试还有：";
                     else
                         label1.Text = "距离高考还有：";
+                    switch (use.set_color)
+                    {
+                        case 1:
+                            label2.ForeColor = Color.Red;
+                            break;
+                        case 2:
+                            label2.ForeColor = Color.Yellow;
+                            break;
+                        case 3:
+                            label2.ForeColor = Color.Blue;
+                            break;
+                        case 4:
+                            label2.ForeColor = Color.Green;
+                            break;
+                        case 5:
+                            label2.ForeColor = Color.Cyan;
+                            break;
+                        case 6:
+                            label2.ForeColor = Color.Purple;
+                            break;
+                        case 7:
+                            label2.ForeColor = Color.Black;
+                            break;
+                        case 8:
+                            label2.ForeColor = Color.White;
+                            break;
+                    }
                     use.restart = false;
                 }
             };

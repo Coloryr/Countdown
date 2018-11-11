@@ -16,6 +16,9 @@ namespace Color_yr.Countdown
         public static int time_Width;
         public static int time_Height;
         public static int time_local;
+        public static int set_color;
+        public static int set_color_time;
+        public static int set_color_date;
 
         public static Form time_form;
 
@@ -116,6 +119,9 @@ namespace Color_yr.Countdown
                 XML.write(XML.config, "时钟-长", "600");
                 XML.write(XML.config, "时钟-高", "190");
                 XML.write(XML.config, "时钟-显示位置", "左上角");
+                XML.write(XML.config, "字体颜色", "黑色");
+                XML.write(XML.config, "时间颜色", "黑色");
+                XML.write(XML.config, "日月颜色", "黑色");
             }
             if (XML.read(XML.config, "设置年") == null)
                 XML.write(XML.config, "设置年", "2019");
@@ -139,6 +145,13 @@ namespace Color_yr.Countdown
                 XML.write(XML.config, "时钟-高", "190");
             if (XML.read(XML.config, "时钟-显示位置") == null)
                 XML.write(XML.config, "时钟-显示位置", "左上角");
+            if (XML.read(XML.config, "字体颜色") == null)
+                XML.write(XML.config, "字体颜色", "黑色");
+            if (XML.read(XML.config, "时间颜色") == null)
+                XML.write(XML.config, "时间颜色", "黑色");
+            if (XML.read(XML.config, "日月颜色") == null)
+                XML.write(XML.config, "日月颜色", "黑色");
+
             if (XML.read(XML.config, "自定义时间") == "false")
             {
                 is_user = false;
@@ -219,6 +232,101 @@ namespace Color_yr.Countdown
                 time_enable = true;
             else
                 time_enable = false;
+
+            switch (XML.read(XML.config, "字体颜色"))
+            {
+                case "红色":
+                    set_color = 1;
+                    break;
+                case "黄色":
+                    set_color = 2;
+                    break;
+                case "蓝色":
+                    set_color = 3;
+                    break;
+                case "绿色":
+                    set_color = 4;
+                    break;
+                case "青色":
+                    set_color = 5;
+                    break;
+                case "紫色":
+                    set_color = 6;
+                    break;
+                case "黑色":
+                    set_color = 7;
+                    break;
+                case "白色":
+                    set_color = 8;
+                    break;
+                default:
+                    XML.write(XML.config, "字体颜色", "黑色");
+                    set_color_time = 7;
+                    break;
+            }
+            switch (XML.read(XML.config, "时间颜色"))
+            {
+                case "红色":
+                    set_color_time = 1;
+                    break;
+                case "黄色":
+                    set_color_time = 2;
+                    break;
+                case "蓝色":
+                    set_color_time = 3;
+                    break;
+                case "绿色":
+                    set_color_time = 4;
+                    break;
+                case "青色":
+                    set_color_time = 5;
+                    break;
+                case "紫色":
+                    set_color_time = 6;
+                    break;
+                case "黑色":
+                    set_color_time = 7;
+                    break;
+                case "白色":
+                    set_color_time = 8;
+                    break;
+                default:
+                    XML.write(XML.config, "时间颜色", "黑色");
+                    set_color_time = 7;
+                    break;
+            }
+            switch (XML.read(XML.config, "日月颜色"))
+            {
+                case "红色":
+                    set_color_date = 1;
+                    break;
+                case "黄色":
+                    set_color_date = 2;
+                    break;
+                case "蓝色":
+                    set_color_date = 3;
+                    break;
+                case "绿色":
+                    set_color_date = 4;
+                    break;
+                case "青色":
+                    set_color_date = 5;
+                    break;
+                case "紫色":
+                    set_color_date = 6;
+                    break;
+                case "黑色":
+                    set_color_date = 7;
+                    break;
+                case "白色":
+                    set_color_date = 8;
+                    break;
+                default:
+                    XML.write(XML.config, "日月颜色", "黑色");
+                    set_color_time = 7;
+                    break;
+            }
+
             time_restart = true;
         }
     }

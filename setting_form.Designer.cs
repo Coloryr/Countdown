@@ -56,11 +56,17 @@ namespace Color_yr.Countdown
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(5, 263);
+            this.button1.Location = new System.Drawing.Point(2, 339);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 20);
@@ -71,7 +77,7 @@ namespace Color_yr.Countdown
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(86, 263);
+            this.button2.Location = new System.Drawing.Point(83, 339);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(77, 20);
@@ -315,12 +321,105 @@ namespace Color_yr.Countdown
             this.textBox8.Text = "600";
             this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox8_KeyPress);
             // 
+            // comboBox3
+            // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "红色",
+            "黄色",
+            "蓝色",
+            "绿色",
+            "青色",
+            "紫色",
+            "黑色",
+            "白色"});
+            this.comboBox3.Location = new System.Drawing.Point(61, 262);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(100, 20);
+            this.comboBox3.TabIndex = 28;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 265);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 12);
+            this.label11.TabIndex = 29;
+            this.label11.Text = "字体颜色";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "红色",
+            "黄色",
+            "蓝色",
+            "绿色",
+            "青色",
+            "紫色",
+            "黑色",
+            "白色"});
+            this.comboBox4.Location = new System.Drawing.Point(61, 288);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(100, 20);
+            this.comboBox4.TabIndex = 30;
+            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 291);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 12);
+            this.label12.TabIndex = 31;
+            this.label12.Text = "时钟颜色";
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Items.AddRange(new object[] {
+            "红色",
+            "黄色",
+            "蓝色",
+            "绿色",
+            "青色",
+            "紫色",
+            "黑色",
+            "白色"});
+            this.comboBox5.Location = new System.Drawing.Point(61, 314);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(100, 20);
+            this.comboBox5.TabIndex = 32;
+            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(3, 317);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(53, 12);
+            this.label13.TabIndex = 33;
+            this.label13.Text = "日月颜色";
+            // 
             // setting_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(348, 286);
+            this.ClientSize = new System.Drawing.Size(165, 366);
+            this.Controls.Add(this.comboBox5);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.checkBox1);
@@ -385,6 +484,11 @@ namespace Color_yr.Countdown
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-
+        private ComboBox comboBox3;
+        private Label label11;
+        private ComboBox comboBox4;
+        private Label label12;
+        private ComboBox comboBox5;
+        private Label label13;
     }
 }

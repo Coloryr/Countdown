@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Threading;
 using LayeredSkin.Forms;
+using System.Drawing;
 
 namespace Color_yr.Countdown
 {
@@ -45,7 +46,6 @@ namespace Color_yr.Countdown
         {
             try
             {
-                Width = 300;
                 X_form = Width;
                 Y_form = Height;
                 use.setTag(this);
@@ -87,11 +87,11 @@ namespace Color_yr.Countdown
                 label1.Text = h + ":" + m;
                 label2.Text = mo + "月" + d + "日";
                 if (use.time_restart == true)
-                { 
-                    Width = use.time_Width;
-                    Height = use.time_Height;
+                {                    
                     float newx = use.time_Width / X_form;//当前宽度与变化前宽度之比
                     float newy = use.time_Height / Y_form;//当前高度与变化前宽度之比
+                    Width = use.time_Width;
+                    Height = use.time_Height;
                     use.setControls(newx, newy, this);
                     switch (use.time_local)
                     {
@@ -120,6 +120,60 @@ namespace Color_yr.Countdown
                     else
                     {
                         Hide();
+                    }
+                    switch (use.set_color_time)
+                    {
+                        case 1:
+                            label1.ForeColor = Color.Red;
+                            break;
+                        case 2:
+                            label1.ForeColor = Color.Yellow;
+                            break;
+                        case 3:
+                            label1.ForeColor = Color.Blue;
+                            break;
+                        case 4:
+                            label1.ForeColor = Color.Green;
+                            break;
+                        case 5:
+                            label1.ForeColor = Color.Cyan;
+                            break;
+                        case 6:
+                            label1.ForeColor = Color.Purple;
+                            break;
+                        case 7:
+                            label1.ForeColor = Color.Black;
+                            break;
+                        case 8:
+                            label1.ForeColor = Color.White;
+                            break;
+                    }
+                    switch (use.set_color_date)
+                    {
+                        case 1:
+                            label2.ForeColor = Color.Red;
+                            break;
+                        case 2:
+                            label2.ForeColor = Color.Yellow;
+                            break;
+                        case 3:
+                            label2.ForeColor = Color.Blue;
+                            break;
+                        case 4:
+                            label2.ForeColor = Color.Green;
+                            break;
+                        case 5:
+                            label2.ForeColor = Color.Cyan;
+                            break;
+                        case 6:
+                            label2.ForeColor = Color.Purple;
+                            break;
+                        case 7:
+                            label2.ForeColor = Color.Black;
+                            break;
+                        case 8:
+                            label2.ForeColor = Color.White;
+                            break;
                     }
                     use.time_restart = false;
                 }

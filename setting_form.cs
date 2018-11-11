@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Color_yr.Countdown
@@ -12,6 +13,12 @@ namespace Color_yr.Countdown
 
         private static int set_local;
         private static int set_time_local;
+        private static int set_color;
+        private static int set_color_time;
+        private static int set_color_date;
+
+        private static string[] local_list = { "左上角", "右上角", "左下角", "右下角" };
+        private static string[] color_list = { "红色", "黄色", "蓝色", "绿色", "青色", "紫色", "黑色", "白色" };
 
         private void setting_Load(object sender, EventArgs e)
         {
@@ -33,6 +40,9 @@ namespace Color_yr.Countdown
                 checkBox2.Checked = false;
             comboBox1.Text = XML.read(XML.config, "显示位置");
             comboBox2.Text = XML.read(XML.config, "时钟-显示位置");
+            comboBox3.Text = XML.read(XML.config, "字体颜色");
+            comboBox4.Text = XML.read(XML.config, "时间颜色");
+            comboBox5.Text = XML.read(XML.config, "日月颜色");
             change_setting_time();
             timer_check();
         }
@@ -137,6 +147,99 @@ namespace Color_yr.Countdown
             }
         }
 
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox3.Text)
+            {
+                case "红色":
+                    set_color = 0;
+                    break;
+                case "黄色":
+                    set_color = 1;
+                    break;
+                case "蓝色":
+                    set_color = 2;
+                    break;
+                case "绿色":
+                    set_color = 3;
+                    break;
+                case "青色":
+                    set_color = 4;
+                    break;
+                case "紫色":
+                    set_color = 5;
+                    break;
+                case "黑色":
+                    set_color = 6;
+                    break;
+                case "白色":
+                    set_color = 7;
+                    break;
+            }
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox4.Text)
+            {
+                case "红色":
+                    set_color_time = 0;
+                    break;
+                case "黄色":
+                    set_color_time = 1;
+                    break;
+                case "蓝色":
+                    set_color_time = 2;
+                    break;
+                case "绿色":
+                    set_color_time = 3;
+                    break;
+                case "青色":
+                    set_color_time = 4;
+                    break;
+                case "紫色":
+                    set_color_time = 5;
+                    break;
+                case "黑色":
+                    set_color_time = 6;
+                    break;
+                case "白色":
+                    set_color_time = 7;
+                    break;
+            }
+        }
+
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox5.Text)
+            {
+                case "红色":
+                    set_color_date = 0;
+                    break;
+                case "黄色":
+                    set_color_date = 1;
+                    break;
+                case "蓝色":
+                    set_color_date = 2;
+                    break;
+                case "绿色":
+                    set_color_date = 3;
+                    break;
+                case "青色":
+                    set_color_date = 4;
+                    break;
+                case "紫色":
+                    set_color_date = 5;
+                    break;
+                case "黑色":
+                    set_color_date = 6;
+                    break;
+                case "白色":
+                    set_color_date = 7;
+                    break;
+            }
+        }
+
         private void change_setting_time()
         {
             if (checkBox1.Checked == true)
@@ -202,37 +305,8 @@ namespace Color_yr.Countdown
                 return;
             }
 
-            switch (set_local)
-            {
-                case 1:
-                    XML.write(XML.config, "显示位置", "左上角");
-                    break;
-                case 2:
-                    XML.write(XML.config, "显示位置", "右上角");
-                    break;
-                case 3:
-                    XML.write(XML.config, "显示位置", "左下角");
-                    break;
-                case 4:
-                    XML.write(XML.config, "显示位置", "右下角");
-                    break;
-            }
-            switch (set_time_local)
-            {
-                case 1:
-                    XML.write(XML.config, "时钟-显示位置", "左上角");
-                    break;
-                case 2:
-                    XML.write(XML.config, "时钟-显示位置", "右上角");
-                    break;
-                case 3:
-                    XML.write(XML.config, "时钟-显示位置", "左下角");
-                    break;
-                case 4:
-                    XML.write(XML.config, "时钟-显示位置", "右下角");
-                    break;
-            }
-
+            XML.write(XML.config, "显示位置", local_list[set_local - 1]);
+            XML.write(XML.config, "时钟-显示位置", local_list[set_time_local - 1]);
             XML.write(XML.config, "时钟-长", textBox8.Text);
             XML.write(XML.config, "时钟-高", textBox7.Text);
             XML.write(XML.config, "设置高", textBox6.Text);
@@ -249,6 +323,9 @@ namespace Color_yr.Countdown
                 XML.write(XML.config, "时钟-启用", "true");
             else
                 XML.write(XML.config, "时钟-启用", "false");
-        }
+            XML.write(XML.config, "字体颜色", color_list[set_color]);
+            XML.write(XML.config, "时间颜色", color_list[set_color_time]);
+            XML.write(XML.config, "日月颜色", color_list[set_color_date]);
+        }       
     }
 }
