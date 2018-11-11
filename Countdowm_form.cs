@@ -105,6 +105,8 @@ namespace Color_yr.Countdown
                         label2.Text = "  "+delta.Days.ToString();
                     else if(delta.Days < 100)
                         label2.Text = " " + delta.Days.ToString();
+                    else
+                        label2.Text = " " + delta.Days.ToString();
                     use.setControls(newx, newy, this);
                     switch (use.local)
                     {
