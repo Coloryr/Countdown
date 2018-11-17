@@ -62,11 +62,13 @@ namespace Color_yr.Countdown
             this.label12 = new System.Windows.Forms.Label();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(2, 339);
+            this.button1.Location = new System.Drawing.Point(165, 178);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 20);
@@ -77,7 +79,7 @@ namespace Color_yr.Countdown
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(83, 339);
+            this.button2.Location = new System.Drawing.Point(246, 178);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(77, 20);
@@ -101,7 +103,7 @@ namespace Color_yr.Countdown
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(5, 166);
+            this.checkBox2.Location = new System.Drawing.Point(167, 7);
             this.checkBox2.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(72, 16);
@@ -119,7 +121,7 @@ namespace Color_yr.Countdown
             "右上角",
             "左下角",
             "右下角"});
-            this.comboBox1.Location = new System.Drawing.Point(61, 141);
+            this.comboBox1.Location = new System.Drawing.Point(61, 142);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(100, 20);
             this.comboBox1.TabIndex = 19;
@@ -134,7 +136,7 @@ namespace Color_yr.Countdown
             "右上角",
             "左下角",
             "右下角"});
-            this.comboBox2.Location = new System.Drawing.Point(61, 238);
+            this.comboBox2.Location = new System.Drawing.Point(223, 79);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(100, 20);
             this.comboBox2.TabIndex = 26;
@@ -184,7 +186,7 @@ namespace Color_yr.Countdown
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 93);
+            this.label5.Location = new System.Drawing.Point(3, 94);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
@@ -194,7 +196,7 @@ namespace Color_yr.Countdown
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 118);
+            this.label6.Location = new System.Drawing.Point(3, 119);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
@@ -204,7 +206,7 @@ namespace Color_yr.Countdown
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 144);
+            this.label7.Location = new System.Drawing.Point(3, 145);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 12);
@@ -214,7 +216,7 @@ namespace Color_yr.Countdown
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 241);
+            this.label8.Location = new System.Drawing.Point(165, 82);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 12);
@@ -224,7 +226,7 @@ namespace Color_yr.Countdown
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 215);
+            this.label9.Location = new System.Drawing.Point(165, 56);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 12);
@@ -234,7 +236,7 @@ namespace Color_yr.Countdown
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 190);
+            this.label10.Location = new System.Drawing.Point(165, 31);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 12);
@@ -283,7 +285,7 @@ namespace Color_yr.Countdown
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(61, 90);
+            this.textBox5.Location = new System.Drawing.Point(61, 91);
             this.textBox5.Margin = new System.Windows.Forms.Padding(2);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(44, 21);
@@ -293,7 +295,7 @@ namespace Color_yr.Countdown
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(61, 115);
+            this.textBox6.Location = new System.Drawing.Point(61, 116);
             this.textBox6.Margin = new System.Windows.Forms.Padding(2);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(44, 21);
@@ -303,7 +305,7 @@ namespace Color_yr.Countdown
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(61, 212);
+            this.textBox7.Location = new System.Drawing.Point(223, 53);
             this.textBox7.Margin = new System.Windows.Forms.Padding(2);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(44, 21);
@@ -313,7 +315,7 @@ namespace Color_yr.Countdown
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(61, 187);
+            this.textBox8.Location = new System.Drawing.Point(223, 28);
             this.textBox8.Margin = new System.Windows.Forms.Padding(2);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(44, 21);
@@ -334,7 +336,7 @@ namespace Color_yr.Countdown
             "紫色",
             "黑色",
             "白色"});
-            this.comboBox3.Location = new System.Drawing.Point(61, 262);
+            this.comboBox3.Location = new System.Drawing.Point(223, 157);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(100, 20);
             this.comboBox3.TabIndex = 28;
@@ -343,7 +345,7 @@ namespace Color_yr.Countdown
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 265);
+            this.label11.Location = new System.Drawing.Point(165, 160);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(53, 12);
@@ -363,7 +365,7 @@ namespace Color_yr.Countdown
             "紫色",
             "黑色",
             "白色"});
-            this.comboBox4.Location = new System.Drawing.Point(61, 288);
+            this.comboBox4.Location = new System.Drawing.Point(223, 105);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(100, 20);
             this.comboBox4.TabIndex = 30;
@@ -372,7 +374,7 @@ namespace Color_yr.Countdown
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 291);
+            this.label12.Location = new System.Drawing.Point(165, 108);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(53, 12);
@@ -392,7 +394,7 @@ namespace Color_yr.Countdown
             "紫色",
             "黑色",
             "白色"});
-            this.comboBox5.Location = new System.Drawing.Point(61, 314);
+            this.comboBox5.Location = new System.Drawing.Point(223, 131);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(100, 20);
             this.comboBox5.TabIndex = 32;
@@ -401,19 +403,40 @@ namespace Color_yr.Countdown
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 317);
+            this.label13.Location = new System.Drawing.Point(165, 134);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(53, 12);
             this.label13.TabIndex = 33;
             this.label13.Text = "日月颜色";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(3, 165);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(89, 12);
+            this.label14.TabIndex = 35;
+            this.label14.Text = "自定义考试文字";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(5, 179);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(156, 21);
+            this.textBox9.TabIndex = 34;
+            this.textBox9.Text = "2019";
+            // 
             // setting_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(165, 366);
+            this.ClientSize = new System.Drawing.Size(327, 202);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.textBox9);
             this.Controls.Add(this.comboBox5);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.comboBox4);
@@ -490,5 +513,7 @@ namespace Color_yr.Countdown
         private Label label12;
         private ComboBox comboBox5;
         private Label label13;
+        private Label label14;
+        private TextBox textBox9;
     }
 }

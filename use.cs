@@ -27,6 +27,8 @@ namespace Color_yr.Countdown
         public static bool time_enable = false;
         public static bool is_user = false;
 
+        public static string user_string;
+
         public static bool isok(KeyPressEventArgs e)
         {
             if (e.KeyChar == '\b')//这是允许输入退格键
@@ -122,6 +124,7 @@ namespace Color_yr.Countdown
                 XML.write(XML.config, "字体颜色", "黑色");
                 XML.write(XML.config, "时间颜色", "黑色");
                 XML.write(XML.config, "日月颜色", "黑色");
+                XML.write(XML.config, "自定义字符", "距离高考还有：");
             }
             if (XML.read(XML.config, "设置年") == null)
                 XML.write(XML.config, "设置年", "2019");
@@ -151,6 +154,8 @@ namespace Color_yr.Countdown
                 XML.write(XML.config, "时间颜色", "黑色");
             if (XML.read(XML.config, "日月颜色") == null)
                 XML.write(XML.config, "日月颜色", "黑色");
+            if (XML.read(XML.config, "自定义字符") == null)
+                XML.write(XML.config, "自定义字符", "距离高考还有：");
 
             if (XML.read(XML.config, "自定义时间") == "false")
             {
@@ -326,7 +331,7 @@ namespace Color_yr.Countdown
                     set_color_time = 7;
                     break;
             }
-
+            user_string = XML.read(XML.config, "自定义字符");
             time_restart = true;
         }
     }

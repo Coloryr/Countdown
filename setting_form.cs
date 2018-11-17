@@ -30,6 +30,7 @@ namespace Color_yr.Countdown
             textBox6.Text = XML.read(XML.config, "设置高");
             textBox7.Text = XML.read(XML.config, "时钟-高");
             textBox8.Text = XML.read(XML.config, "时钟-长");
+            textBox9.Text = XML.read(XML.config, "自定义字符");
             if (XML.read(XML.config, "自定义时间") == "true")
                 checkBox1.Checked = true;
             else
@@ -245,6 +246,7 @@ namespace Color_yr.Countdown
             if (checkBox1.Checked == true)
             {
                 textBox1.ReadOnly = true;
+                textBox9.ReadOnly = false;
                 textBox2.ReadOnly = false;
                 textBox3.ReadOnly = false;
                 textBox4.ReadOnly = false;
@@ -255,6 +257,7 @@ namespace Color_yr.Countdown
                 textBox2.ReadOnly = true;
                 textBox3.ReadOnly = true;
                 textBox4.ReadOnly = true;
+                textBox9.ReadOnly = true;
             }
         }
         private void timer_check()
@@ -326,6 +329,11 @@ namespace Color_yr.Countdown
             XML.write(XML.config, "字体颜色", color_list[set_color]);
             XML.write(XML.config, "时间颜色", color_list[set_color_time]);
             XML.write(XML.config, "日月颜色", color_list[set_color_date]);
-        }       
+            if (textBox9.Text.Length > 7)
+                MessageBox.Show("字符过多");
+            else
+                XML.write(XML.config, "自定义字符", textBox9.Text);
+
+        }
     }
 }
