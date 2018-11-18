@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Color_yr.Countdown
@@ -16,27 +17,18 @@ namespace Color_yr.Countdown
 
         static void Main()
         {
-            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+            string path = Application.StartupPath;
+            if (!File.Exists(path + @"\LayeredSkin.dll"))
+            {
+                byte[] Save = Properties.Resources.LayeredSkin;
+                FileStream fsObj = new FileStream(path + @"\LayeredSkin.dll", FileMode.CreateNew);
+                fsObj.Write(Save, 0, Save.Length);
+                fsObj.Close();
+                MessageBox.Show("初始化完成");
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Countdown());           
-        }
-        static System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
-        {
-            return LoadFromResource("LayeredSkin.dll");
-        }
-        //加载资源转为Assembly程序集
-        private static Assembly LoadFromResource(string resName)
-        {
-            Assembly ass = Assembly.GetExecutingAssembly();
-            using (Stream stream = ass.GetManifestResourceStream("Countdown.Resources." + resName))
-            {
-                byte[] bt = new byte[stream.Length];
-                stream.Read(bt, 0, bt.Length);
-                Assembly asm = Assembly.Load(bt);//转换流到程序集
-                return asm;
-            }
-            return null;
+            Application.Run(new setting_form());
         }
     }
 }

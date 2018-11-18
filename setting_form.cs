@@ -335,5 +335,18 @@ namespace Color_yr.Countdown
                 XML.write(XML.config, "自定义字符", textBox9.Text);
 
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (use.is_open == true)
+            {
+                use.is_open = false;
+                timer1.Enabled = false;
+                use.start_form = new Countdown();
+                use.start_form.Show();
+                Hide();
+            }
+            timer1.Enabled = false;
+        }
     }
 }

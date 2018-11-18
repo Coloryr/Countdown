@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Threading;
 using System.Drawing;
+using System.IO;
 
 namespace Color_yr.Countdown
 {
@@ -21,11 +22,13 @@ namespace Color_yr.Countdown
         public static int set_color_date;
 
         public static Form time_form;
+        public static Form start_form;
 
         public static bool restart = true;
         public static bool time_restart = true;
         public static bool time_enable = false;
         public static bool is_user = false;
+        public static bool is_open = true;
 
         public static string user_string;
 

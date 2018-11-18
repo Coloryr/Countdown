@@ -12,7 +12,6 @@ namespace Color_yr.Countdown
         private float X_form, Y_form;
         public time_form()
         {
-            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
             InitializeComponent();
         }
 
@@ -89,16 +88,16 @@ namespace Color_yr.Countdown
                             Top = 0;
                             break;
                         case 2:
-                            Left = Screen.PrimaryScreen.WorkingArea.Width - Width;
+                            Left = Screen.PrimaryScreen.WorkingArea.Width - use.time_Width;
                             Top = 0;
                             break;
                         case 3:
                             Left = 0;
-                            Top = Screen.PrimaryScreen.WorkingArea.Height - Height;
+                            Top = Screen.PrimaryScreen.WorkingArea.Height - use.time_Height;
                             break;
                         case 4:
-                            Left = Screen.PrimaryScreen.WorkingArea.Width - Width;
-                            Top = Screen.PrimaryScreen.WorkingArea.Height - Height;
+                            Left = Screen.PrimaryScreen.WorkingArea.Width - use.time_Width;
+                            Top = Screen.PrimaryScreen.WorkingArea.Height - use.time_Height;
                             break;
                     }
                     if (use.time_enable == true)

@@ -25,9 +25,6 @@ namespace Color_yr.Countdown
                 X_form = Width;
                 Y_form = Height;
                 use.setTag(this);
-                //label1.BackColor = Color.Transparent;
-                //Opacity = 0.1;
-
                 use.time_form = new time_form();
                 use.time_form.Show();
                 backgroundWorker1.RunWorkerAsync();
@@ -87,10 +84,11 @@ namespace Color_yr.Countdown
                 }
                 if (use.restart == true)
                 {
+                    
+                    float newx = use.Width / X_form;//当前宽度与变化前宽度之比
+                    float newy = use.Height / Y_form;//当前高度与变化前宽度之比
                     Width = use.Width;
                     Height = use.Height;
-                    float newx = Width / X_form;//当前宽度与变化前宽度之比
-                    float newy = Height / Y_form;//当前高度与变化前宽度之比
                     if (delta.Days < 10)
                         label2.Text = "  " + delta.Days.ToString();
                     else if (delta.Days < 100)
@@ -105,16 +103,16 @@ namespace Color_yr.Countdown
                             Top = 0;
                             break;
                         case 2:
-                            Left = Screen.PrimaryScreen.WorkingArea.Width - Width;
+                            Left = Screen.PrimaryScreen.WorkingArea.Width - use.Width;
                             Top = 0;
                             break;
                         case 3:
                             Left = 0;
-                            Top = Screen.PrimaryScreen.WorkingArea.Height - Height;
+                            Top = Screen.PrimaryScreen.WorkingArea.Height - use.Height;
                             break;
                         case 4:
-                            Left = Screen.PrimaryScreen.WorkingArea.Width - Width;
-                            Top = Screen.PrimaryScreen.WorkingArea.Height - Height;
+                            Left = Screen.PrimaryScreen.WorkingArea.Width - use.Width;
+                            Top = Screen.PrimaryScreen.WorkingArea.Height - use.Height;
                             break;
                     }
                     Hide();
