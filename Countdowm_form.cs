@@ -82,19 +82,19 @@ namespace Color_yr.Countdown
                     Show();
                     WindowState = FormWindowState.Normal;
                 }
+                if (delta.Days < 10)
+                    label2.Text = "  " + delta.Days.ToString();
+                else if (delta.Days < 100)
+                    label2.Text = " " + delta.Days.ToString();
+                else
+                    label2.Text = delta.Days.ToString();
                 if (use.restart == true)
                 {
-                    
                     float newx = use.Width / X_form;//当前宽度与变化前宽度之比
                     float newy = use.Height / Y_form;//当前高度与变化前宽度之比
                     Width = use.Width;
                     Height = use.Height;
-                    if (delta.Days < 10)
-                        label2.Text = "  " + delta.Days.ToString();
-                    else if (delta.Days < 100)
-                        label2.Text = " " + delta.Days.ToString();
-                    else
-                        label2.Text = delta.Days.ToString();
+
                     use.setControls(newx, newy, this);
                     switch (use.local)
                     {

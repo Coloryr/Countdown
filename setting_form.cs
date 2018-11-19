@@ -344,9 +344,17 @@ namespace Color_yr.Countdown
                 timer1.Enabled = false;
                 use.start_form = new Countdown();
                 use.start_form.Show();
+                timer2.Enabled = true;
                 Hide();
             }
             timer1.Enabled = false;
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            use.restart = true;
+            use.time_restart = true;
+            timer2.Enabled = false;
         }
     }
 }
