@@ -16,12 +16,15 @@ namespace Color_yr.Countdown
         private static int set_color;
         private static int set_color_time;
         private static int set_color_date;
+        private static int set_close_mode;
 
         private static string[] local_list = { "左上角", "右上角", "左下角", "右下角" };
         private static string[] color_list = { "红色", "黄色", "蓝色", "绿色", "青色", "紫色", "黑色", "白色" };
+        public static string[] close_list = { "关机", "休眠", "睡眠" };
 
         private void setting_Load(object sender, EventArgs e)
         {
+
             textBox1.Text = XML.read(XML.config, "设置年份");
             textBox2.Text = XML.read(XML.config, "设置年");
             textBox3.Text = XML.read(XML.config, "设置月");
@@ -44,8 +47,24 @@ namespace Color_yr.Countdown
             comboBox3.Text = XML.read(XML.config, "字体颜色");
             comboBox4.Text = XML.read(XML.config, "时间颜色");
             comboBox5.Text = XML.read(XML.config, "日月颜色");
+            comboBox6.Text = XML.read(XML.config, "自动关机-模式");
+            string text = XML.read(XML.config, "自动关机-开关");
+            if (text == "true")
+                checkBox3.Checked = true;
+            else
+                checkBox3.Checked = false;
+            text = XML.read(XML.config, "自动关机-时间1");
+            textBox10.Text = text.Substring(0, 2);
+            textBox11.Text = text.Substring(3, 2);
+            text = XML.read(XML.config, "自动关机-时间2");
+            textBox12.Text = text.Substring(0, 2);
+            textBox13.Text = text.Substring(3, 2);
+            text = XML.read(XML.config, "自动关机-时间3");
+            textBox14.Text = text.Substring(0, 2);
+            textBox15.Text = text.Substring(3, 2);
             change_setting_time();
             timer_check();
+            close_check();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -56,7 +75,10 @@ namespace Color_yr.Countdown
         {
             timer_check();
         }
-
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            close_check();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -69,42 +91,7 @@ namespace Color_yr.Countdown
             use.time_restart = true;
         }
 
-        private void TextBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (use.isok(e) == false)
-                e.Handled = true;
-        }
-        private void TextBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (use.isok(e) == false)
-                e.Handled = true;
-        }
-        private void TextBox3_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (use.isok(e) == false)
-                e.Handled = true;
-        }
-        private void TextBox4_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (use.isok(e) == false)
-                e.Handled = true;
-        }
-        private void TextBox5_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (use.isok(e) == false)
-                e.Handled = true;
-        }
-        private void TextBox6_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (use.isok(e) == false)
-                e.Handled = true;
-        }
-        private void TextBox7_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (use.isok(e) == false)
-                e.Handled = true;
-        }
-        private void TextBox8_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBox_number_check(object sender, KeyPressEventArgs e)
         {
             if (use.isok(e) == false)
                 e.Handled = true;
@@ -240,6 +227,21 @@ namespace Color_yr.Countdown
                     break;
             }
         }
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox6.Text)
+            {
+                case "关机":
+                    set_close_mode = 0;
+                    break;
+                case "休眠":
+                    set_close_mode = 1;
+                    break;
+                case "睡眠":
+                    set_close_mode = 2;
+                    break;
+            }
+        }
 
         private void change_setting_time()
         {
@@ -273,6 +275,29 @@ namespace Color_yr.Countdown
                 textBox8.ReadOnly = true;
                 textBox7.ReadOnly = true;
                 comboBox2.Enabled = false;
+            }
+        }
+        private void close_check()
+        {
+            if (checkBox3.Checked == true)
+            {
+                comboBox6.Enabled = true;
+                textBox10.ReadOnly = false;
+                textBox11.ReadOnly = false;
+                textBox12.ReadOnly = false;
+                textBox13.ReadOnly = false;
+                textBox14.ReadOnly = false;
+                textBox15.ReadOnly = false;
+            }
+            else
+            {
+                comboBox6.Enabled = false;
+                textBox10.ReadOnly = true;
+                textBox11.ReadOnly = true;
+                textBox12.ReadOnly = true;
+                textBox13.ReadOnly = true;
+                textBox14.ReadOnly = true;
+                textBox15.ReadOnly = true;
             }
         }
 
@@ -333,7 +358,77 @@ namespace Color_yr.Countdown
                 MessageBox.Show("字符过多");
             else
                 XML.write(XML.config, "自定义字符", textBox9.Text);
+            if (checkBox3.Checked == true)
+                XML.write(XML.config, "自动关机-开关", "true");
+            else
+                XML.write(XML.config, "自动关机-开关", "false");
+            int a, b;
+            int.TryParse(textBox10.Text, out a);
+            int.TryParse(textBox11.Text, out b);
+            if (a > 23 && b > 59)
+            {
+                MessageBox.Show("时间1错误");
+            }
+            else
+            {
+                string write;
+                if (a < 10)
+                    write = "0" + a.ToString();
+                else
+                    write = a.ToString();
+                if (b < 10)
+                    write = write + ":0" + b.ToString();
+                else
+                    write = write + ":" + b.ToString();
+                XML.write(XML.config, "自动关机-时间1", write);
+                use.close1[0] = a;
+                use.close1[1] = b;
+            }
 
+            int.TryParse(textBox12.Text, out a);
+            int.TryParse(textBox13.Text, out b);
+            if (a > 23 && b > 59)
+            {
+                MessageBox.Show("时间2错误");
+            }
+            else
+            {
+                string write;
+                if (a < 10)
+                    write = "0" + a.ToString();
+                else
+                    write = a.ToString();
+                if (b < 10)
+                    write = write + ":0" + b.ToString();
+                else
+                    write = write + ":" + b.ToString();
+                XML.write(XML.config, "自动关机-时间2", write);
+                use.close2[0] = a;
+                use.close2[1] = b;
+            }
+
+            int.TryParse(textBox14.Text, out a);
+            int.TryParse(textBox15.Text, out b);
+            if (a > 23 && b > 59)
+            {
+                MessageBox.Show("时间3错误");
+            }
+            else
+            {
+                string write;
+                if (a < 10)
+                    write = "0" + a.ToString();
+                else
+                    write = a.ToString();
+                if (b < 10)
+                    write = write + ":0" + b.ToString();
+                else
+                    write = write + ":" + b.ToString();
+                XML.write(XML.config, "自动关机-时间3", write);
+                use.close3[0] = a;
+                use.close3[1] = b;
+            }
+            XML.write(XML.config, "自动关机-模式", close_list[set_close_mode]);
         }
 
         private void timer1_Tick(object sender, EventArgs e)

@@ -3,12 +3,17 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
 using LayeredSkin.Forms;
+using System.Runtime.InteropServices;
 
 namespace Color_yr.Countdown
 {
     public partial class Countdown : LayeredForm
     {
+        [DllImport("kernel32.dll", EntryPoint = "SetProcessWorkingSetSize")]
+        public static extern int SetProcessWorkingSetSize(IntPtr process, int minSize, int maxSize);   
+
         private Form setting = new setting_form();
+        private Form close = new close();
         private float X_form, Y_form;
 
         public Countdown()
@@ -52,14 +57,32 @@ namespace Color_yr.Countdown
             {
                 try
                 {
-                    start();
-                    GC.Collect();
+                    start();       
                     Thread.Sleep(1000);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
+            }
+        }
+
+        private void Showclose()
+        {
+            close.TopMost = true;           
+            close.SetBounds((Screen.GetBounds(close).Width / 2) - (close.Width / 2),
+                (Screen.GetBounds(close).Height / 2) - (close.Height / 2),
+                close.Width, close.Height, BoundsSpecified.Location);
+            close.Show();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+            {
+                SetProcessWorkingSetSize(System.Diagnostics.Process.GetCurrentProcess().Handle, -1, -1);
             }
         }
 
@@ -74,6 +97,43 @@ namespace Color_yr.Countdown
                 return;
             }
             var delta = set_time - now_time;
+
+            if (use.close_enable == true)
+            {
+                int hour, min;
+                hour = now.Hour;
+                min = now.Minute;
+                if (use.close1[0] == hour && use.close1[1] == min && now.Second < 5)
+                {
+                    if (close.Visible == true)
+                        return;
+                    else
+                    {
+                        MethodInvoker MethInvk = new MethodInvoker(Showclose);
+                        BeginInvoke(MethInvk);
+                    }
+                }
+                if (use.close2[0] == hour && use.close2[1] == min && now.Second < 5)
+                {
+                    if (close.Visible == true)
+                        return;
+                    else
+                    {
+                        MethodInvoker MethInvk = new MethodInvoker(Showclose);
+                        BeginInvoke(MethInvk);
+                    }
+                }
+                if (use.close3[0] == hour && use.close3[1] == min && now.Second < 5)
+                {
+                    if (close.Visible == true)
+                        return;
+                    else
+                    {
+                        MethodInvoker MethInvk = new MethodInvoker(Showclose);
+                        BeginInvoke(MethInvk);
+                    }
+                }
+            }
 
             Action<int> action = (data) =>
             {
