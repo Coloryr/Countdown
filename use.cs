@@ -32,6 +32,14 @@ namespace Color_yr.Countdown
 
         public static string user_string;
 
+        public static void CloseWindow()
+        {
+            System.Diagnostics.Process bootProcess = new System.Diagnostics.Process();
+            bootProcess.StartInfo.FileName = "shutdown";
+            bootProcess.StartInfo.Arguments = "-h";
+            bootProcess.Start();
+        }
+
         public static bool isok(KeyPressEventArgs e)
         {
             if (e.KeyChar == '\b')//这是允许输入退格键
