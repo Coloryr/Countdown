@@ -31,6 +31,7 @@ namespace Color_yr.Countdown
         private void button1_Click(object sender, EventArgs e)
         {
             use.CloseWindow(use.close_mode);
+            Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
