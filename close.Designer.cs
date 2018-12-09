@@ -1,4 +1,7 @@
-﻿namespace Color_yr.Countdown
+﻿
+using System.Windows.Forms;
+
+namespace Color_yr.Countdown
 {
     partial class close
     {
@@ -119,7 +122,6 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "close";
             this.Text = "关机时间到！";
             this.Load += new System.EventHandler(this.close_Load);
