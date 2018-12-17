@@ -29,6 +29,8 @@ namespace Color_yr.Countdown
 
         private void button2_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
+            Hide();
             Close();
         }
 
