@@ -25,6 +25,7 @@ namespace Color_yr.Countdown
         {
             try
             {
+                use use = new use();
                 use.start();
                 notifyIcon1.Visible = true;
                 X_form = Width;

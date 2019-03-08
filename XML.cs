@@ -17,7 +17,7 @@ namespace Color_yr.Countdown
         /// </summary>
         /// <param name="text">文件</param>
         /// <param name="mode">模式</param>>
-        public static void CreateFile(string text, int mode)
+        public void CreateFile(string text, int mode)
         {
             FileInfo file = new FileInfo(applocal + text);
             if (file.Exists && mode == 1) //文件存在就删除
@@ -38,7 +38,7 @@ namespace Color_yr.Countdown
         /// <param name="text">文件名</param>
         /// <param name="data">属性名</param>
         /// <param name="data1">元素名</param>
-        public static void setXml(string text, string data, string data1)
+        public void setXml(string text, string data, string data1)
         {
             if (File.Exists(applocal + text) == false)
             {
@@ -69,7 +69,7 @@ namespace Color_yr.Countdown
         /// <param name="text">文件名</param>
         /// <param name="data">属性名</param>
         /// <param name="data1">元素名</param>
-        public static void write(string text, string data, string data1)
+        public void write(string text, string data, string data1)
         {
             if (File.Exists(applocal + text) == false)
             {
@@ -106,7 +106,7 @@ namespace Color_yr.Countdown
             }
         }
 
-        private static void rewaite(string text, string data, string data1)
+        private void rewaite(string text, string data, string data1)
         {
             try
             {
@@ -140,7 +140,7 @@ namespace Color_yr.Countdown
         /// <param name="text">文件名</param>
         /// <param name="text">属性名</param>
         /// <param name="text">元素名</param>
-        public static void Remove(string text, string data, string data1)//删除XML文件中的元素
+        public void Remove(string text, string data, string data1)//删除XML文件中的元素
         {
             if (File.Exists(applocal + text) == false)
             {
@@ -164,7 +164,7 @@ namespace Color_yr.Countdown
         /// </summary>
         /// <param name="text">文件名</param>
         /// <param name="data">属性名</param>
-        public static string read(string text, string data)
+        public string read(string text, string data)
         {
             string a = null;
             if (File.Exists(applocal + text) == false)

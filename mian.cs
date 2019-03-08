@@ -22,6 +22,7 @@ namespace Color_yr.Countdown
                 fsObj.Close();
                 MessageBox.Show("初始化完成");
             }
+            use use = new use();
             use.start();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

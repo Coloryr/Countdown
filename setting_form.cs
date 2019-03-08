@@ -24,7 +24,7 @@ namespace Color_yr.Countdown
 
         private void setting_Load(object sender, EventArgs e)
         {
-
+            XML XML = new XML();
             textBox1.Text = XML.read(XML.config, "设置年份");
             textBox2.Text = XML.read(XML.config, "设置年");
             textBox3.Text = XML.read(XML.config, "设置月");
@@ -86,6 +86,7 @@ namespace Color_yr.Countdown
         private void button2_Click(object sender, EventArgs e)
         {
             save_config();
+            use use = new use();
             use.start();
             use.restart = true;
             use.time_restart = true;
@@ -93,6 +94,7 @@ namespace Color_yr.Countdown
 
         private void TextBox_number_check(object sender, KeyPressEventArgs e)
         {
+            use use = new use();
             if (use.isok(e) == false)
                 e.Handled = true;
         }
@@ -327,12 +329,13 @@ namespace Color_yr.Countdown
             }
 
             int.TryParse(textBox4.Text, out test);
+            use use = new use();
             if (test > use.SetDate(DateTime.Now.ToString()) || test < 1)
             {
                 MessageBox.Show("日设置错误", "保存失败");
                 return;
             }
-
+            XML XML = new XML();
             XML.write(XML.config, "显示位置", local_list[set_local - 1]);
             XML.write(XML.config, "时钟-显示位置", local_list[set_time_local - 1]);
             XML.write(XML.config, "时钟-长", textBox8.Text);
@@ -354,10 +357,7 @@ namespace Color_yr.Countdown
             XML.write(XML.config, "字体颜色", color_list[set_color]);
             XML.write(XML.config, "时间颜色", color_list[set_color_time]);
             XML.write(XML.config, "日月颜色", color_list[set_color_date]);
-            if (textBox9.Text.Length > 7)
-                MessageBox.Show("字符过多");
-            else
-                XML.write(XML.config, "自定义字符", textBox9.Text);
+            XML.write(XML.config, "自定义字符", textBox9.Text);
             if (checkBox3.Checked == true)
                 XML.write(XML.config, "自动关机-开关", "true");
             else

@@ -23,6 +23,8 @@ namespace Color_yr.Countdown
 
         private void button1_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
+            use use = new use();
             use.CloseWindow(use.close_mode);
             Close();
         }
@@ -40,6 +42,8 @@ namespace Color_yr.Countdown
             label4.Text = time.ToString();
             if (time == 0)
             {
+                timer1.Enabled = false;
+                use use = new use();
                 use.CloseWindow(use.close_mode);
                 Close();
             }

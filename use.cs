@@ -39,7 +39,7 @@ namespace Color_yr.Countdown
 
         public static string user_string;
 
-        public static void CloseWindow(int mode)
+        public void CloseWindow(int mode)
         {
             System.Diagnostics.Process bootProcess = new System.Diagnostics.Process();
             bootProcess.StartInfo.FileName = "shutdown";
@@ -60,7 +60,7 @@ namespace Color_yr.Countdown
             bootProcess.Start();
         }
 
-        public static bool isok(KeyPressEventArgs e)
+        public bool isok(KeyPressEventArgs e)
         {
             if (e.KeyChar == '\b')//这是允许输入退格键
                 return true;
@@ -105,7 +105,7 @@ namespace Color_yr.Countdown
         }
 
         //月份为两位
-        public static int SetDate(string time)
+        public int SetDate(string time)
         {
             int intYear;
             int intMonth;
@@ -136,8 +136,9 @@ namespace Color_yr.Countdown
             return intDay;
         }
 
-        public static void start()
+        public void start()
         {
+            XML XML = new XML();
             if (XML.read(XML.config, "设置年份") == null)
             {
                 XML.write(XML.config, "设置年份", "2019");
@@ -381,9 +382,11 @@ namespace Color_yr.Countdown
             close_check_time();
 
             time_restart = true;
+            XML = null;
         }
-        public static void close_check_time()
+        public void close_check_time()
         {
+            XML XML = new XML();
             string text = XML.read(XML.config, "自动关机-开关");
             if (text == "true")
                 close_enable = true;
@@ -471,6 +474,7 @@ namespace Color_yr.Countdown
                     close_mode = 0;
                     break;
             }
+            XML = null;
         }
     }
 }
