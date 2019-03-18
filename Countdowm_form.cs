@@ -95,7 +95,9 @@ namespace Color_yr.Countdown
             if (set_time < now_time)
             {
                 MessageBox.Show("时间错误，请重新设置");
-                return;
+                XML XML = new XML();
+                XML.write(XML.config, "自定义时间", "false");
+                use.is_user = false;
             }
             var delta = set_time - now_time;
 
