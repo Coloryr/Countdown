@@ -4,6 +4,7 @@ using System.Threading;
 using System.Drawing;
 using System.IO;
 using Microsoft.Win32;
+using System.Runtime.InteropServices;
 
 namespace Color_yr.Countdown
 {
@@ -26,6 +27,7 @@ namespace Color_yr.Countdown
         public static Form time_form;
         public static Form start_form;
 
+        public static bool is_close = false;
         public static bool restart = true;
         public static bool time_restart = true;
         public static bool time_enable = false;

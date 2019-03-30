@@ -9,11 +9,8 @@ namespace Color_yr.Countdown
 {
     public partial class Countdown : LayeredForm
     {
-        [DllImport("kernel32.dll", EntryPoint = "SetProcessWorkingSetSize")]
-        public static extern int SetProcessWorkingSetSize(IntPtr process, int minSize, int maxSize);   
-
         private Form setting = new setting_form();
-        private Form close = new close();
+        private Form close = new close_form();
         private float X_form, Y_form;
 
         public Countdown()
@@ -68,8 +65,18 @@ namespace Color_yr.Countdown
             }
         }
 
-        private void Showclose()
+        [DllImport("kernel32.dll", EntryPoint = "SetProcessWorkingSetSize")]
+        public static extern int SetProcessWorkingSetSize(IntPtr process, int minSize, int maxSize);
+
+        public void openClose()
         {
+            MethodInvoker MethInvk = new MethodInvoker(Showclose);
+            BeginInvoke(MethInvk);
+        }
+
+        private static void Showclose()
+        {
+            close_form close = new close_form();
             close.TopMost = true;           
             close.SetBounds((Screen.GetBounds(close).Width / 2) - (close.Width / 2),
                 (Screen.GetBounds(close).Height / 2) - (close.Height / 2),
@@ -101,40 +108,22 @@ namespace Color_yr.Countdown
             }
             var delta = set_time - now_time;
 
-            if (use.close_enable == true)
+            if (use.close_enable == true && use.is_close == true && now.Second < 2)
             {
                 int hour, min;
                 hour = now.Hour;
                 min = now.Minute;
-                if (use.close1[0] == hour && use.close1[1] == min && now.Second < 5)
+                if (use.close1[0] == hour && use.close1[1] == min)
                 {
-                    if (close.Visible == true)
-                        return;
-                    else
-                    {
-                        MethodInvoker MethInvk = new MethodInvoker(Showclose);
-                        BeginInvoke(MethInvk);
-                    }
+                    openClose();
                 }
-                if (use.close2[0] == hour && use.close2[1] == min && now.Second < 5)
+                if (use.close2[0] == hour && use.close2[1] == min)
                 {
-                    if (close.Visible == true)
-                        return;
-                    else
-                    {
-                        MethodInvoker MethInvk = new MethodInvoker(Showclose);
-                        BeginInvoke(MethInvk);
-                    }
+                    openClose();
                 }
-                if (use.close3[0] == hour && use.close3[1] == min && now.Second < 5)
+                if (use.close3[0] == hour && use.close3[1] == min)
                 {
-                    if (close.Visible == true)
-                        return;
-                    else
-                    {
-                        MethodInvoker MethInvk = new MethodInvoker(Showclose);
-                        BeginInvoke(MethInvk);
-                    }
+                    openClose();
                 }
             }
 

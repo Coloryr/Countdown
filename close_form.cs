@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 namespace Color_yr.Countdown
 {
-    public partial class close : Form
+    public partial class close_form : Form
     {
         int time;
 
-        public close()
+        public close_form()
         {
             InitializeComponent();           
         }
@@ -19,6 +19,7 @@ namespace Color_yr.Countdown
             timer1.Enabled = true;
             label1.Text = "定时已到，是否要" + setting_form.close_list[use.close_mode];
             label3.Text = "秒后自动" + setting_form.close_list[use.close_mode];
+            use.is_close = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -34,6 +35,7 @@ namespace Color_yr.Countdown
             timer1.Enabled = false;
             Hide();
             Close();
+            use.is_close = false;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

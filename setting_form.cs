@@ -429,6 +429,7 @@ namespace Color_yr.Countdown
                 use.close3[1] = b;
             }
             XML.write(XML.config, "自动关机-模式", close_list[set_close_mode]);
+            MessageBox.Show("已保存");
         }
 
         private void timer1_Tick(object sender, EventArgs e)
