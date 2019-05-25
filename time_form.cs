@@ -51,7 +51,7 @@ namespace Color_yr.Countdown
             {
                 var now_time = DateTime.Now;
                 string h, m, d, mo;
-                if (WindowState == FormWindowState.Minimized || use.time_enable == true)      //如果窗口大小发生改变后变成最小化，则将窗口重新设置为正常大小
+                if (WindowState == FormWindowState.Minimized || config.time_enable == true)      //如果窗口大小发生改变后变成最小化，则将窗口重新设置为正常大小
                 {
                     Show();
                     WindowState = FormWindowState.Normal;
@@ -74,14 +74,14 @@ namespace Color_yr.Countdown
                     mo = now_time.Month.ToString();
                 label1.Text = h + ":" + m;
                 label2.Text = mo + "月" + d + "日";
-                if (use.time_restart == true)
+                if (config.time_restart == true)
                 {                    
-                    float newx = use.time_Width / X_form;//当前宽度与变化前宽度之比
-                    float newy = use.time_Height / Y_form;//当前高度与变化前宽度之比
-                    Width = use.time_Width;
-                    Height = use.time_Height;
+                    float newx = config.time_form_Width / X_form;//当前宽度与变化前宽度之比
+                    float newy = config.time_form_Height / Y_form;//当前高度与变化前宽度之比
+                    Width = config.time_form_Width;
+                    Height = config.time_form_Height;
                     use.setControls(newx, newy, this);
-                    switch (use.time_local)
+                    switch (config.time_form_local)
                     {
                         case 1:
                             Left = 0;

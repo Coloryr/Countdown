@@ -78,6 +78,7 @@
     <Compile Include="close_form.Designer.cs">
       <DependentUpon>close_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="config.cs" />
     <Compile Include="setting_form.cs">
       <SubType>Form</SubType>
     </Compile>

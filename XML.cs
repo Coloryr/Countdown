@@ -15,174 +15,147 @@ namespace Color_yr.Countdown
         /// <summary>
         /// 使用linq 建立xml
         /// </summary>
-        /// <param name="text">文件</param>
+        /// <param name="fine">文件</param>
         /// <param name="mode">模式</param>>
-        public void CreateFile(string text, int mode)
+        public void CreateFile(string fine, int mode)
         {
-            FileInfo file = new FileInfo(applocal + text);
+            FileInfo file = new FileInfo(applocal + fine);
             if (file.Exists && mode == 1) //文件存在就删除
             {
                 file.Delete();
                 XElement contacts = new XElement("config");
-                contacts.Save(applocal + text);
+                contacts.Save(applocal + fine);
             }
             else
             {
                 XElement contacts = new XElement("config");
-                contacts.Save(applocal + text);
+                contacts.Save(applocal + fine);
             }
         }
         /// <summary>
         /// //修改XML文件中的元素
         /// </summary>
-        /// <param name="text">文件名</param>
-        /// <param name="data">属性名</param>
-        /// <param name="data1">元素名</param>
-        public void setXml(string text, string data, string data1)
+        /// <param name="fine">文件名</param>
+        /// <param name="type">类型名</param>
+        /// <param name="attribute">属性名</param>
+        /// <param name="data">数据</param>
+        public void setXml(string fine, string type, string attribute, string data)
         {
-            if (File.Exists(applocal + text) == false)
+            if (File.Exists(applocal + fine) == false)
             {
-                CreateFile(text, 0);//创建该文件，如果路径文件夹不存在，则报错。
+                CreateFile(fine, 0);//创建该文件，如果路径文件夹不存在，则报错。
             }
             ///导入XML文件
-            XElement xe = XElement.Load(applocal + text);
+            XElement xe = XElement.Load(applocal + fine);
             ///查找被替换的元素
             IEnumerable<XElement> element = from e in xe.Elements("config")
-                                            where e.Attribute("int").Value == data
+                                            where e.Attribute(type).Value == attribute
                                             select e;
             ///替换为新元素，并保存
             if (element.Count() > 0)
             {
                 XElement first = element.First();
-                ///设置新的属性
-                //first.SetAttributeValue(data, data1);
                 ///替换新的节点
                 first.ReplaceNodes(
-                new XElement("data", data1)              ///添加元素Name
+                new XElement(attribute, data)              ///添加元素Name
                  );
             }
-            xe.Save(applocal + text);
+            xe.Save(applocal + fine);
         }
         /// <summary>
         /// //增加元素到XML文件
         /// </summary>
-        /// <param name="text">文件名</param>
-        /// <param name="data">属性名</param>
-        /// <param name="data1">元素名</param>
-        public void write(string text, string data, string data1)
+        /// <param name="fine">文件名</param>
+        /// <param name="type">类型名</param>
+        /// <param name="attribute">属性名</param>
+        /// <param name="data">数据</param>
+        public void write(string fine, string type, string attribute, string data)
         {
-            if (File.Exists(applocal + text) == false)
+            if (File.Exists(applocal + fine) == false)
             {
-                CreateFile(text, 0);//创建该文件，如果路径文件夹不存在，则报错。
+                CreateFile(fine, 0);//创建该文件，如果路径文件夹不存在，则报错。
             }
             try
             {
-                string a = read(text, data);
+                string a = read(fine, type, attribute);
                 if (a != null)
                 {
-                    setXml(text, data, data1);
+                    setXml(fine, type, attribute, data);
                 }
                 else
                 {
                     ///导入XML文件
-                    XElement xe = XElement.Load(applocal + text);
+                    XElement xe = XElement.Load(applocal + fine);
                     ///创建一个新的节点
                     XElement student = new XElement("config",
-                     new XAttribute("int", data),                    ///添加属性number
-             new XElement("data", data1)                     ///添加元素Name
+                     new XAttribute(type, data),                    ///添加属性number
+             new XElement(attribute, data)                     ///添加元素Name
              );
                     ///添加节点到文件中，并保存
                     xe.Add(student);
-                    xe.Save(applocal + text);
+                    xe.Save(applocal + fine);
                 }
             }
             catch (Exception)
             {
                 if (MessageBox.Show("配置文件在读取时发发生了错误，是否要删除原来的配置文件再新生成一个？", "配置文件错误", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    CreateFile(text, 0);
-                    rewaite(text, data, data1);
+                    CreateFile(fine, 0);
+                    write(fine, type, attribute, data);
                 }
             }
         }
 
-        private void rewaite(string text, string data, string data1)
-        {
-            try
-            {
-                string a = read(text, data);
-                if (a != null)
-                {
-                    setXml(text, data, data1);
-                }
-                else
-                {
-                    ///导入XML文件
-                    XElement xe = XElement.Load(applocal + text);
-                    ///创建一个新的节点
-                    XElement student = new XElement("config",
-                     new XAttribute("int", data),                    ///添加属性number
-             new XElement("data", data1)                     ///添加元素Name
-             );
-                    ///添加节点到文件中，并保存
-                    xe.Add(student);
-                    xe.Save(applocal + text);
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("写文件错误，请检查", "配置文件错误");
-            }
-        }
         /// <summary>
         /// 删除元素
         /// </summary>
-        /// <param name="text">文件名</param>
-        /// <param name="text">属性名</param>
-        /// <param name="text">元素名</param>
-        public void Remove(string text, string data, string data1)//删除XML文件中的元素
+        /// <param name="fine">文件名</param>
+        /// <param name="type">类型名</param>
+        /// <param name="attribute">属性名</param>
+        public void Remove(string fine, string type,string attribute)//删除XML文件中的元素
         {
-            if (File.Exists(applocal + text) == false)
+            if (File.Exists(applocal + fine) == false)
             {
-                CreateFile(text, 0);//创建该文件，如果路径文件夹不存在，则报错。
+                CreateFile(fine, 0);//创建该文件，如果路径文件夹不存在，则报错。
             }
             ///导入XML文件
-            XElement xe = XElement.Load(applocal + text);
+            XElement xe = XElement.Load(applocal + fine);
             ///查找被删除的元素
             IEnumerable<XElement> element = from e in xe.Elements()
-                                            where e.Attribute(data).Value == data1
+                                            where e.Attribute(type).Value == attribute
                                             select e;
             ///删除指定的元素，并保存
             if (element.Count() > 0)
             {
                 element.First().Remove();
             }
-            xe.Save(applocal + text);
+            xe.Save(applocal + fine);
         }
         /// <summary>
         /// 查询
         /// </summary>
-        /// <param name="text">文件名</param>
-        /// <param name="data">属性名</param>
-        public string read(string text, string data)
+        /// <param name="fine">文件名</param>
+        /// <param name="type">类型名</param>
+        /// <param name="attribute">属性名</param>
+        public string read(string fine, string type, string attribute)
         {
-            string a = null;
-            if (File.Exists(applocal + text) == false)
+            string temp = null;
+            if (File.Exists(applocal + fine) == false)
             {
-                CreateFile(text, 0);//创建该文件，如果路径文件夹不存在，则报错。
+                CreateFile(fine, 0);//创建该文件，如果路径文件夹不存在，则报错。
             }
             try
             {
                 XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(applocal + text);
+                xmlDoc.Load(applocal + fine);
 
-                XmlNode xnP = xmlDoc.SelectSingleNode("config/config[@int='" + data + "']/data");
-                a = xnP.InnerText;
-                if (a == "") a = null;
+                XmlNode xnP = xmlDoc.SelectSingleNode("config/config[@" + type + "='" + attribute + "']/" + attribute);
+                temp = xnP.InnerText;
+                if (temp == "") temp = null;
             }
             catch (Exception)
             { }
-            return a;
+            return temp;
         }
     }
 }
