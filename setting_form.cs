@@ -14,6 +14,7 @@ namespace Color_yr.Countdown
         private static int set_local;
         private static int set_time_local;
         private static int set_color;
+        private static int set_color_countdown;
         private static int set_color_time;
         private static int set_color_date;
         private static int set_close_mode;
@@ -48,7 +49,8 @@ namespace Color_yr.Countdown
             comboBox4.Text = XML.read(XML.config, "时钟设置", "时间颜色");
             comboBox5.Text = XML.read(XML.config, "时钟设置", "日月颜色");
             comboBox6.Text = XML.read(XML.config, "自动关机", "模式");
-            if( XML.read(XML.config, "自动关机", "启用") == "开")
+            comboBox7.Text = XML.read(XML.config, "倒计时设置", "数字颜色");
+            if ( XML.read(XML.config, "自动关机", "启用") == "开")
                 checkBox3.Checked = true;
             else
                 checkBox3.Checked = false;
@@ -128,6 +130,14 @@ namespace Color_yr.Countdown
             use use = new use();
             set_color_date = use.form_color(comboBox5.Text);
         }
+
+
+        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            use use = new use();
+            set_color_countdown = use.form_color(comboBox7.Text);
+        }
+
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (comboBox6.Text)
@@ -253,6 +263,7 @@ namespace Color_yr.Countdown
                 XML.write(XML.config, "时钟设置", "启用", "开");
             else
                 XML.write(XML.config, "时钟设置", "启用", "关");
+            XML.write(XML.config, "倒计时设置", "数字颜色", color_list[set_color_countdown - 1]);
             XML.write(XML.config, "倒计时设置", "字体颜色", color_list[set_color-1]);
             XML.write(XML.config, "时钟设置", "时间颜色", color_list[set_color_time-1]);
             XML.write(XML.config, "时钟设置", "日月颜色", color_list[set_color_date-1]);
@@ -349,5 +360,6 @@ namespace Color_yr.Countdown
             config.time_restart = true;
             timer2.Enabled = false;
         }
+
     }
 }
