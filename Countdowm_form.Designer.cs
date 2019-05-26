@@ -117,12 +117,6 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 3000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // Countdown
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);

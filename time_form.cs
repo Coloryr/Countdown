@@ -75,7 +75,8 @@ namespace Color_yr.Countdown
                 label1.Text = h + ":" + m;
                 label2.Text = mo + "月" + d + "日";
                 if (config.time_restart == true)
-                {                    
+                {
+                    use use = new use();
                     float newx = config.time_form_Width / X_form;//当前宽度与变化前宽度之比
                     float newy = config.time_form_Height / Y_form;//当前高度与变化前宽度之比
                     Width = config.time_form_Width;
@@ -88,82 +89,29 @@ namespace Color_yr.Countdown
                             Top = 0;
                             break;
                         case 2:
-                            Left = Screen.PrimaryScreen.WorkingArea.Width - use.time_Width;
+                            Left = Screen.PrimaryScreen.WorkingArea.Width - config.time_form_Width;
                             Top = 0;
                             break;
                         case 3:
                             Left = 0;
-                            Top = Screen.PrimaryScreen.WorkingArea.Height - use.time_Height;
+                            Top = Screen.PrimaryScreen.WorkingArea.Height - config.time_form_Height;
                             break;
                         case 4:
-                            Left = Screen.PrimaryScreen.WorkingArea.Width - use.time_Width;
-                            Top = Screen.PrimaryScreen.WorkingArea.Height - use.time_Height;
+                            Left = Screen.PrimaryScreen.WorkingArea.Width - config.time_form_Width;
+                            Top = Screen.PrimaryScreen.WorkingArea.Height - config.time_form_Height;
                             break;
                     }
-                    if (use.time_enable == true)
+                    if (config.time_enable == true)
                     {
                         Hide();
                         Show();
                     }
                     else
-                    {
                         Hide();
-                    }
-                    switch (use.set_color_time)
-                    {
-                        case 1:
-                            label1.ForeColor = Color.Red;
-                            break;
-                        case 2:
-                            label1.ForeColor = Color.Yellow;
-                            break;
-                        case 3:
-                            label1.ForeColor = Color.Blue;
-                            break;
-                        case 4:
-                            label1.ForeColor = Color.Green;
-                            break;
-                        case 5:
-                            label1.ForeColor = Color.Cyan;
-                            break;
-                        case 6:
-                            label1.ForeColor = Color.Purple;
-                            break;
-                        case 7:
-                            label1.ForeColor = Color.Black;
-                            break;
-                        case 8:
-                            label1.ForeColor = Color.White;
-                            break;
-                    }
-                    switch (use.set_color_date)
-                    {
-                        case 1:
-                            label2.ForeColor = Color.Red;
-                            break;
-                        case 2:
-                            label2.ForeColor = Color.Yellow;
-                            break;
-                        case 3:
-                            label2.ForeColor = Color.Blue;
-                            break;
-                        case 4:
-                            label2.ForeColor = Color.Green;
-                            break;
-                        case 5:
-                            label2.ForeColor = Color.Cyan;
-                            break;
-                        case 6:
-                            label2.ForeColor = Color.Purple;
-                            break;
-                        case 7:
-                            label2.ForeColor = Color.Black;
-                            break;
-                        case 8:
-                            label2.ForeColor = Color.White;
-                            break;
-                    }
-                    use.time_restart = false;
+                    label1.ForeColor = use.form_color(config.time_form_time_color);
+                    
+                    label2.ForeColor = use.form_color(config.time_form_date_color);
+                    config.time_restart = false;
                 }
             };
             Invoke(action, 0);

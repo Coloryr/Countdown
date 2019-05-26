@@ -6,6 +6,8 @@ namespace Color_yr.Countdown
 {
     static class Program
     {
+        public static Form time_form;
+        public static Form start_form;
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -22,8 +24,8 @@ namespace Color_yr.Countdown
                 fsObj.Close();
                 MessageBox.Show("初始化完成");
             }
-            use use = new use();
-            use.start();
+            config config = new config();
+            config.start();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new setting_form());

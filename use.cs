@@ -160,5 +160,30 @@ namespace Color_yr.Countdown
             }
             return true;
         }
+
+        public Color form_color(int color)
+        {
+            switch (color)
+            {
+                case 1:
+                    return Color.Red;
+                case 2:
+                    return Color.Yellow;
+                case 3:
+                    return Color.Blue;
+                case 4:
+                    return Color.Green;
+                case 5:
+                    return Color.Cyan;
+                case 6:
+                    return Color.Purple;
+                case 7:
+                    return Color.Black;
+                case 8:
+                    return Color.White;
+                default:
+                    return Color.Red;
+            }
+        }
     }
 }

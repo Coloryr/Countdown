@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28705.295
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Countdown", "Countdown.csproj", "{FDE0BF1F-91B3-411F-8263-C08BBCCD02D9}"
 EndProject
@@ -11,8 +11,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FDE0BF1F-91B3-411F-8263-C08BBCCD02D9}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{FDE0BF1F-91B3-411F-8263-C08BBCCD02D9}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{FDE0BF1F-91B3-411F-8263-C08BBCCD02D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDE0BF1F-91B3-411F-8263-C08BBCCD02D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDE0BF1F-91B3-411F-8263-C08BBCCD02D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDE0BF1F-91B3-411F-8263-C08BBCCD02D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

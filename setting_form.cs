@@ -25,41 +25,40 @@ namespace Color_yr.Countdown
         private void setting_Load(object sender, EventArgs e)
         {
             XML XML = new XML();
-            textBox1.Text = XML.read(XML.config, "设置年份");
-            textBox2.Text = XML.read(XML.config, "设置年");
-            textBox3.Text = XML.read(XML.config, "设置月");
-            textBox4.Text = XML.read(XML.config, "设置日");
-            textBox5.Text = XML.read(XML.config, "设置长");
-            textBox6.Text = XML.read(XML.config, "设置高");
-            textBox7.Text = XML.read(XML.config, "时钟-高");
-            textBox8.Text = XML.read(XML.config, "时钟-长");
-            textBox9.Text = XML.read(XML.config, "自定义字符");
-            if (XML.read(XML.config, "自定义时间") == "true")
+            textBox1.Text = XML.read(XML.config, "时间设置", "设置年份");
+            textBox2.Text = XML.read(XML.config, "时间设置", "设置年");
+            textBox3.Text = XML.read(XML.config, "时间设置", "设置月");
+            textBox4.Text = XML.read(XML.config, "时间设置", "设置日");
+            textBox5.Text = XML.read(XML.config, "倒计时设置", "窗体长");
+            textBox6.Text = XML.read(XML.config, "倒计时设置", "窗体高");
+            textBox7.Text = XML.read(XML.config, "时钟设置", "窗体长");
+            textBox8.Text = XML.read(XML.config, "时钟设置", "窗体高");
+            textBox9.Text = XML.read(XML.config, "倒计时设置", "自定义字符");
+            if (XML.read(XML.config, "时间设置", "自定义时间") == "开")
                 checkBox1.Checked = true;
             else
                 checkBox1.Checked = false;
-            if (XML.read(XML.config, "时钟-启用") == "true")
+            if (XML.read(XML.config, "时钟设置", "启用") == "开")
                 checkBox2.Checked = true;
             else
                 checkBox2.Checked = false;
-            comboBox1.Text = XML.read(XML.config, "显示位置");
-            comboBox2.Text = XML.read(XML.config, "时钟-显示位置");
-            comboBox3.Text = XML.read(XML.config, "字体颜色");
-            comboBox4.Text = XML.read(XML.config, "时间颜色");
-            comboBox5.Text = XML.read(XML.config, "日月颜色");
-            comboBox6.Text = XML.read(XML.config, "自动关机-模式");
-            string text = XML.read(XML.config, "自动关机-开关");
-            if (text == "true")
+            comboBox1.Text = XML.read(XML.config, "倒计时设置", "窗体位置");
+            comboBox2.Text = XML.read(XML.config, "时钟设置", "窗体位置");
+            comboBox3.Text = XML.read(XML.config, "倒计时设置", "字体颜色");
+            comboBox4.Text = XML.read(XML.config, "时钟设置", "时间颜色");
+            comboBox5.Text = XML.read(XML.config, "时钟设置", "日月颜色");
+            comboBox6.Text = XML.read(XML.config, "自动关机", "模式");
+            if( XML.read(XML.config, "自动关机", "启用") == "开")
                 checkBox3.Checked = true;
             else
                 checkBox3.Checked = false;
-            text = XML.read(XML.config, "自动关机-时间1");
+            string text = XML.read(XML.config, "自动关机", "时间1");
             textBox10.Text = text.Substring(0, 2);
             textBox11.Text = text.Substring(3, 2);
-            text = XML.read(XML.config, "自动关机-时间2");
+            text = XML.read(XML.config, "自动关机", "时间2");
             textBox12.Text = text.Substring(0, 2);
             textBox13.Text = text.Substring(3, 2);
-            text = XML.read(XML.config, "自动关机-时间3");
+            text = XML.read(XML.config, "自动关机", "时间3");
             textBox14.Text = text.Substring(0, 2);
             textBox15.Text = text.Substring(3, 2);
             change_setting_time();
@@ -87,9 +86,10 @@ namespace Color_yr.Countdown
         {
             save_config();
             use use = new use();
-            use.start();
-            use.restart = true;
-            use.time_restart = true;
+            config config = new config();
+            config.start();
+            config.restart = true;
+            config.time_restart = true;
         }
 
         private void TextBox_number_check(object sender, KeyPressEventArgs e)
@@ -101,133 +101,32 @@ namespace Color_yr.Countdown
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (comboBox1.Text)
-            {
-                case "左上角":
-                    set_local = 1;
-                    break;
-                case "右上角":
-                    set_local = 2;
-                    break;
-                case "左下角":
-                    set_local = 3;
-                    break;
-                case "右下角":
-                    set_local = 4;
-                    break;
-            }
+            use use = new use();
+            set_local = use.form_local(comboBox1.Text);
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (comboBox2.Text)
-            {
-                case "左上角":
-                    set_time_local = 1;
-                    break;
-                case "右上角":
-                    set_time_local = 2;
-                    break;
-                case "左下角":
-                    set_time_local = 3;
-                    break;
-                case "右下角":
-                    set_time_local = 4;
-                    break;
-            }
+            use use = new use();
+            set_time_local = use.form_local(comboBox2.Text);
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (comboBox3.Text)
-            {
-                case "红色":
-                    set_color = 0;
-                    break;
-                case "黄色":
-                    set_color = 1;
-                    break;
-                case "蓝色":
-                    set_color = 2;
-                    break;
-                case "绿色":
-                    set_color = 3;
-                    break;
-                case "青色":
-                    set_color = 4;
-                    break;
-                case "紫色":
-                    set_color = 5;
-                    break;
-                case "黑色":
-                    set_color = 6;
-                    break;
-                case "白色":
-                    set_color = 7;
-                    break;
-            }
+            use use = new use();
+            set_color = use.form_color(comboBox3.Text);
         }
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (comboBox4.Text)
-            {
-                case "红色":
-                    set_color_time = 0;
-                    break;
-                case "黄色":
-                    set_color_time = 1;
-                    break;
-                case "蓝色":
-                    set_color_time = 2;
-                    break;
-                case "绿色":
-                    set_color_time = 3;
-                    break;
-                case "青色":
-                    set_color_time = 4;
-                    break;
-                case "紫色":
-                    set_color_time = 5;
-                    break;
-                case "黑色":
-                    set_color_time = 6;
-                    break;
-                case "白色":
-                    set_color_time = 7;
-                    break;
-            }
+            use use = new use();
+            set_color_time = use.form_color(comboBox4.Text);
         }
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (comboBox5.Text)
-            {
-                case "红色":
-                    set_color_date = 0;
-                    break;
-                case "黄色":
-                    set_color_date = 1;
-                    break;
-                case "蓝色":
-                    set_color_date = 2;
-                    break;
-                case "绿色":
-                    set_color_date = 3;
-                    break;
-                case "青色":
-                    set_color_date = 4;
-                    break;
-                case "紫色":
-                    set_color_date = 5;
-                    break;
-                case "黑色":
-                    set_color_date = 6;
-                    break;
-                case "白色":
-                    set_color_date = 7;
-                    break;
-            }
+            use use = new use();
+            set_color_date = use.form_color(comboBox5.Text);
         }
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -268,14 +167,14 @@ namespace Color_yr.Countdown
         {
             if (checkBox2.Checked == true)
             {
-                textBox8.ReadOnly = false;
                 textBox7.ReadOnly = false;
+                textBox8.ReadOnly = false;
                 comboBox2.Enabled = true;
             }
             else
             {
-                textBox8.ReadOnly = true;
                 textBox7.ReadOnly = true;
+                textBox8.ReadOnly = true;
                 comboBox2.Enabled = false;
             }
         }
@@ -336,32 +235,32 @@ namespace Color_yr.Countdown
                 return;
             }
             XML XML = new XML();
-            XML.write(XML.config, "显示位置", local_list[set_local - 1]);
-            XML.write(XML.config, "时钟-显示位置", local_list[set_time_local - 1]);
-            XML.write(XML.config, "时钟-长", textBox8.Text);
-            XML.write(XML.config, "时钟-高", textBox7.Text);
-            XML.write(XML.config, "设置高", textBox6.Text);
-            XML.write(XML.config, "设置长", textBox5.Text);
-            XML.write(XML.config, "设置日", textBox4.Text);
-            XML.write(XML.config, "设置月", textBox3.Text);
-            XML.write(XML.config, "设置年", textBox2.Text);
-            XML.write(XML.config, "设置年份", textBox1.Text);
+            XML.write(XML.config, "倒计时设置", "窗体位置", local_list[set_local - 1]);
+            XML.write(XML.config, "时钟设置", "窗体位置", local_list[set_time_local - 1]);
+            XML.write(XML.config, "时钟设置", "窗体长", textBox7.Text);
+            XML.write(XML.config, "时钟设置", "窗体高", textBox8.Text);
+            XML.write(XML.config, "倒计时设置", "窗体长", textBox5.Text);
+            XML.write(XML.config, "倒计时设置", "窗体高", textBox6.Text);
+            XML.write(XML.config, "时间设置", "设置日", textBox4.Text);
+            XML.write(XML.config, "时间设置", "设置月", textBox3.Text);
+            XML.write(XML.config, "时间设置", "设置年", textBox2.Text);
+            XML.write(XML.config, "时间设置", "设置年份", textBox1.Text);
             if (checkBox1.Checked == true)
-                XML.write(XML.config, "自定义时间", "true");
+                XML.write(XML.config, "时间设置", "自定义时间", "开");
             else
-                XML.write(XML.config, "自定义时间", "false");
+                XML.write(XML.config, "时间设置", "自定义时间", "关");
             if (checkBox2.Checked == true)
-                XML.write(XML.config, "时钟-启用", "true");
+                XML.write(XML.config, "时钟设置", "启用", "开");
             else
-                XML.write(XML.config, "时钟-启用", "false");
-            XML.write(XML.config, "字体颜色", color_list[set_color]);
-            XML.write(XML.config, "时间颜色", color_list[set_color_time]);
-            XML.write(XML.config, "日月颜色", color_list[set_color_date]);
-            XML.write(XML.config, "自定义字符", textBox9.Text);
+                XML.write(XML.config, "时钟设置", "启用", "关");
+            XML.write(XML.config, "倒计时设置", "字体颜色", color_list[set_color-1]);
+            XML.write(XML.config, "时钟设置", "时间颜色", color_list[set_color_time-1]);
+            XML.write(XML.config, "时钟设置", "日月颜色", color_list[set_color_date-1]);
+            XML.write(XML.config, "倒计时设置", "自定义字符", textBox9.Text);
             if (checkBox3.Checked == true)
-                XML.write(XML.config, "自动关机-开关", "true");
+                XML.write(XML.config, "自动关机", "启用","开");
             else
-                XML.write(XML.config, "自动关机-开关", "false");
+                XML.write(XML.config, "自动关机", "启用", "关");
             int a, b;
             int.TryParse(textBox10.Text, out a);
             int.TryParse(textBox11.Text, out b);
@@ -380,9 +279,7 @@ namespace Color_yr.Countdown
                     write = write + ":0" + b.ToString();
                 else
                     write = write + ":" + b.ToString();
-                XML.write(XML.config, "自动关机-时间1", write);
-                use.close1[0] = a;
-                use.close1[1] = b;
+                XML.write(XML.config, "自动关机", "时间1", write);
             }
 
             int.TryParse(textBox12.Text, out a);
@@ -402,9 +299,7 @@ namespace Color_yr.Countdown
                     write = write + ":0" + b.ToString();
                 else
                     write = write + ":" + b.ToString();
-                XML.write(XML.config, "自动关机-时间2", write);
-                use.close2[0] = a;
-                use.close2[1] = b;
+                XML.write(XML.config, "自动关机", "时间2", write);
             }
 
             int.TryParse(textBox14.Text, out a);
@@ -424,22 +319,24 @@ namespace Color_yr.Countdown
                     write = write + ":0" + b.ToString();
                 else
                     write = write + ":" + b.ToString();
-                XML.write(XML.config, "自动关机-时间3", write);
-                use.close3[0] = a;
-                use.close3[1] = b;
+                XML.write(XML.config, "自动关机", "时间3", write);
             }
-            XML.write(XML.config, "自动关机-模式", close_list[set_close_mode]);
+            XML.write(XML.config, "自动关机", "模式", close_list[set_close_mode]);
+            config config = new config();
+            config.start();
             MessageBox.Show("已保存");
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (use.is_open == true)
+            if (config.is_open == true)
             {
-                use.is_open = false;
+                config.is_open = false;
                 timer1.Enabled = false;
-                use.start_form = new Countdown();
-                use.start_form.Show();
+                Program.start_form = new Countdown();
+                Program.start_form.Show();
+                Program.time_form = new time_form();
+                Program.time_form.Show();
                 timer2.Enabled = true;
                 Hide();
             }
@@ -448,8 +345,8 @@ namespace Color_yr.Countdown
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            use.restart = true;
-            use.time_restart = true;
+            config.restart = true;
+            config.time_restart = true;
             timer2.Enabled = false;
         }
     }

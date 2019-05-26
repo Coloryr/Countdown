@@ -23,9 +23,6 @@ namespace Color_yr.Countdown
 
         public static int close_mode;
 
-        public static Form time_form;
-        public static Form start_form;
-
         public static bool is_close = false;
         public static bool restart = true;
         public static bool time_restart = true;
@@ -42,9 +39,14 @@ namespace Color_yr.Countdown
 
         public void start()
         {
-            conifg_reload();
-            config_check();
-            close_check_time();
+            try
+            {
+                conifg_reload();
+                config_check();
+                close_check_time();
+            }
+            catch
+            { }
         }
 
         public void conifg_reload()
@@ -58,9 +60,9 @@ namespace Color_yr.Countdown
                 XML.write(XML.config, "时间设置", "设置日", "7");
                 XML.write(XML.config, "时间设置", "自定义时间", "关");
 
-                XML.write(XML.config, "倒计时设置", "设置长", "501");
-                XML.write(XML.config, "倒计时设置", "设置高", "360");
-                XML.write(XML.config, "倒计时设置", "显示位置", "左上角");
+                XML.write(XML.config, "倒计时设置", "窗体长", "501");
+                XML.write(XML.config, "倒计时设置", "窗体高", "360");
+                XML.write(XML.config, "倒计时设置", "窗体位置", "左上角");
                 XML.write(XML.config, "倒计时设置", "字体颜色", "红色");
                 XML.write(XML.config, "倒计时设置", "数字颜色", "红色");
                 XML.write(XML.config, "倒计时设置", "自定义字符", "距离高考还有：");
@@ -68,7 +70,7 @@ namespace Color_yr.Countdown
                 XML.write(XML.config, "时钟设置", "启用", "开");
                 XML.write(XML.config, "时钟设置", "窗体长", "600");
                 XML.write(XML.config, "时钟设置", "窗体高", "190");
-                XML.write(XML.config, "时钟设置", "窗体位置", "左上角");
+                XML.write(XML.config, "时钟设置", "窗体位置", "右上角");
                 XML.write(XML.config, "时钟设置", "时间颜色", "红色");
                 XML.write(XML.config, "时钟设置", "日月颜色", "红色");
 
@@ -84,16 +86,16 @@ namespace Color_yr.Countdown
             if (XML.read(XML.config, "时间设置", "设置年") == null)
                 XML.write(XML.config, "时间设置", "设置年份", "2019");
             if (XML.read(XML.config, "时间设置", "设置月") == null)
-                XML.write(XML.config, "时间设置", "设置月", "2019");
+                XML.write(XML.config, "时间设置", "设置月", "6");
             if (XML.read(XML.config, "时间设置", "设置日") == null)
-                XML.write(XML.config, "时间设置", "设置日", "2019");
+                XML.write(XML.config, "时间设置", "设置日", "7");
 
-            if (XML.read(XML.config, "倒计时设置", "设置长") == null)
-                XML.write(XML.config, "倒计时设置", "设置长", "501");
-            if (XML.read(XML.config, "倒计时设置", "设置高") == null)
-                XML.write(XML.config, "倒计时设置", "设置高", "360");
-            if (XML.read(XML.config, "倒计时设置", "显示位置") == null)
-                XML.write(XML.config, "倒计时设置", "显示位置", "左上角");
+            if (XML.read(XML.config, "倒计时设置", "窗体长") == null)
+                XML.write(XML.config, "倒计时设置", "窗体长", "501");
+            if (XML.read(XML.config, "倒计时设置", "窗体高") == null)
+                XML.write(XML.config, "倒计时设置", "窗体高", "360");
+            if (XML.read(XML.config, "倒计时设置", "窗体位置") == null)
+                XML.write(XML.config, "倒计时设置", "窗体位置", "右上角");
             if (XML.read(XML.config, "倒计时设置", "字体颜色") == null)
                 XML.write(XML.config, "倒计时设置", "字体颜色", "红色");
             if (XML.read(XML.config, "倒计时设置", "日月颜色") == null)
@@ -150,13 +152,13 @@ namespace Color_yr.Countdown
                     XML.write(XML.config, "时间设置", "设置月", "7");
                 }
             }
-            int.TryParse(XML.read(XML.config, "倒计时设置", "设置长"), out countdown_form_Width);
-            int.TryParse(XML.read(XML.config, "倒计时设置", "设置高"), out countdown_form_Height);
-            countdown_form_local = use.form_local(XML.read(XML.config, "倒计时设置", "显示位置"));
+            int.TryParse(XML.read(XML.config, "倒计时设置", "窗体长"), out countdown_form_Width);
+            int.TryParse(XML.read(XML.config, "倒计时设置", "窗体高"), out countdown_form_Height);
+            countdown_form_local = use.form_local(XML.read(XML.config, "倒计时设置", "窗体位置"));
             if (countdown_form_local == 0)
             {
                 countdown_form_local = 1;
-                XML.write(XML.config, "倒计时设置", "显示位置", "左上角");
+                XML.write(XML.config, "倒计时设置", "窗体位置", "左上角");
             }
             countdown_form_color = use.form_color(XML.read(XML.config, "倒计时设置", "数字颜色"));
             if (countdown_form_color == 0)
@@ -172,30 +174,30 @@ namespace Color_yr.Countdown
             }
             user_string = XML.read(XML.config, "倒计时设置", "自定义字符");
 
-            int.TryParse(XML.read(XML.config, "时间设置", "窗体长"), out time_form_Width);
-            int.TryParse(XML.read(XML.config, "时间设置",  "窗体高"), out time_form_Height);
-            time_form_local = use.form_local(XML.read(XML.config, "时间设置", "显示位置"));
+            int.TryParse(XML.read(XML.config, "时钟设置", "窗体长"), out time_form_Width);
+            int.TryParse(XML.read(XML.config, "时钟设置",  "窗体高"), out time_form_Height);
+            time_form_local = use.form_local(XML.read(XML.config, "时钟设置", "窗体位置"));
             if (time_form_local == 0)
             {
                 time_form_local = 1;
-                XML.write(XML.config, "时间设置", "显示位置", "左上角");
+                XML.write(XML.config, "时钟设置", "显示位置", "左上角");
             }
-            if (XML.read(XML.config, "时间设置",  "启用") == "开")
+            if (XML.read(XML.config, "时钟设置",  "启用") == "开")
                 time_enable = true;
             else
                 time_enable = false;
 
-            time_form_time_color = use.form_color(XML.read(XML.config, "时间设置", "时间颜色"));
+            time_form_time_color = use.form_color(XML.read(XML.config, "时钟设置", "时间颜色"));
             if (time_form_time_color == 0)
             {
                 time_form_time_color = 1;
-                XML.write(XML.config, "时间设置", "时间颜色", "红色");
+                XML.write(XML.config, "时钟设置", "时间颜色", "红色");
             }
             time_form_date_color = use.form_color(XML.read(XML.config, "时间设置", "日月颜色"));
             if (time_form_date_color == 0)
             {
                 time_form_date_color = 1;
-                XML.write(XML.config, "时间设置", "日月颜色", "红色");
+                XML.write(XML.config, "时钟设置", "日月颜色", "红色");
             }
         }
         public void close_check_time()
@@ -245,7 +247,6 @@ namespace Color_yr.Countdown
                     close_mode = 0;
                     break;
             }
-            XML = null;
         }
     }
 }

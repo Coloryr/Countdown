@@ -45,22 +45,19 @@ namespace Color_yr.Countdown
             {
                 CreateFile(fine, 0);//创建该文件，如果路径文件夹不存在，则报错。
             }
-            ///导入XML文件
-            XElement xe = XElement.Load(applocal + fine);
-            ///查找被替换的元素
-            IEnumerable<XElement> element = from e in xe.Elements("config")
-                                            where e.Attribute(type).Value == attribute
-                                            select e;
-            ///替换为新元素，并保存
-            if (element.Count() > 0)
+            XmlDocument xmldoc = new XmlDocument();
+            xmldoc.Load(applocal + fine);
+            XmlNodeList nodeList = xmldoc.SelectSingleNode("config/" + type).ChildNodes;//获取bookstore节点的所有子节点
+            foreach (XmlNode xn in nodeList)//遍历所有子节点
             {
-                XElement first = element.First();
-                ///替换新的节点
-                first.ReplaceNodes(
-                new XElement(attribute, data)              ///添加元素Name
-                 );
+                XmlElement xe2 = (XmlElement)xn;//转换类型
+                if (xe2.Name == attribute)//如果找到
+                {
+                    xe2.InnerText = data;//则修改
+                    break;//找到退出来就可以了
+                }
             }
-            xe.Save(applocal + fine);
+            xmldoc.Save(applocal + fine);//保存。
         }
         /// <summary>
         /// //增加元素到XML文件
@@ -85,15 +82,21 @@ namespace Color_yr.Countdown
                 else
                 {
                     ///导入XML文件
-                    XElement xe = XElement.Load(applocal + fine);
-                    ///创建一个新的节点
-                    XElement student = new XElement("config",
-                     new XAttribute(type, data),                    ///添加属性number
-             new XElement(attribute, data)                     ///添加元素Name
-             );
-                    ///添加节点到文件中，并保存
-                    xe.Add(student);
-                    xe.Save(applocal + fine);
+                    XmlDocument xmldoc = new XmlDocument();
+                    xmldoc.Load(applocal + fine);
+
+                    XmlElement node = (XmlElement)xmldoc.SelectSingleNode("config/" + type);
+                    if (node == null)
+                    {
+                        node = xmldoc.CreateElement(type);
+                    }
+                    node.SetAttribute("type", type);
+                    XmlElement xesub1 = xmldoc.CreateElement(attribute);
+                    xesub1.InnerText = data;
+                    node.AppendChild(xesub1);
+
+                    xmldoc.DocumentElement.AppendChild(node);
+                    xmldoc.Save(applocal + fine);
                 }
             }
             catch (Exception)
@@ -106,31 +109,6 @@ namespace Color_yr.Countdown
             }
         }
 
-        /// <summary>
-        /// 删除元素
-        /// </summary>
-        /// <param name="fine">文件名</param>
-        /// <param name="type">类型名</param>
-        /// <param name="attribute">属性名</param>
-        public void Remove(string fine, string type,string attribute)//删除XML文件中的元素
-        {
-            if (File.Exists(applocal + fine) == false)
-            {
-                CreateFile(fine, 0);//创建该文件，如果路径文件夹不存在，则报错。
-            }
-            ///导入XML文件
-            XElement xe = XElement.Load(applocal + fine);
-            ///查找被删除的元素
-            IEnumerable<XElement> element = from e in xe.Elements()
-                                            where e.Attribute(type).Value == attribute
-                                            select e;
-            ///删除指定的元素，并保存
-            if (element.Count() > 0)
-            {
-                element.First().Remove();
-            }
-            xe.Save(applocal + fine);
-        }
         /// <summary>
         /// 查询
         /// </summary>
@@ -149,7 +127,7 @@ namespace Color_yr.Countdown
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(applocal + fine);
 
-                XmlNode xnP = xmlDoc.SelectSingleNode("config/config[@" + type + "='" + attribute + "']/" + attribute);
+                XmlNode xnP = xmlDoc.SelectSingleNode("config/" + type + "/" + attribute);
                 temp = xnP.InnerText;
                 if (temp == "") temp = null;
             }

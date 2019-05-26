@@ -11,6 +11,7 @@ namespace Color_yr.Countdown
     {
         private Form setting = new setting_form();
         private Form close = new close_form();
+
         private float X_form, Y_form;
 
         public Countdown()
@@ -23,13 +24,10 @@ namespace Color_yr.Countdown
             try
             {
                 use use = new use();
-                use.start();
                 notifyIcon1.Visible = true;
                 X_form = Width;
                 Y_form = Height;
                 use.setTag(this);
-                use.time_form = new time_form();
-                use.time_form.Show();
                 backgroundWorker1.RunWorkerAsync();
             }
             catch (Exception ex)
@@ -55,7 +53,7 @@ namespace Color_yr.Countdown
             {
                 try
                 {
-                    start();       
+                    start();
                     Thread.Sleep(1000);
                 }
                 catch (Exception ex)
@@ -64,9 +62,6 @@ namespace Color_yr.Countdown
                 }
             }
         }
-
-        [DllImport("kernel32.dll", EntryPoint = "SetProcessWorkingSetSize")]
-        public static extern int SetProcessWorkingSetSize(IntPtr process, int minSize, int maxSize);
 
         public void openClose()
         {
@@ -84,47 +79,31 @@ namespace Color_yr.Countdown
             close.Show();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
-            {
-                SetProcessWorkingSetSize(System.Diagnostics.Process.GetCurrentProcess().Handle, -1, -1);
-            }
-        }
-
         public void start()
         {
-            var set_time = new DateTime(use.year, use.month, use.day, 0, 0, 0);
+            var set_time = new DateTime(config.countdown_form_year, config.countdown_form_month, config.countdown_form_day, 0, 0, 0);
             var now = DateTime.Now;
             var now_time = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0);
             if (set_time < now_time)
             {
                 MessageBox.Show("时间错误，请重新设置");
                 XML XML = new XML();
-                XML.write(XML.config, "自定义时间", "false");
-                use.is_user = false;
+                XML.write(XML.config, "时间设置", "自定义时间", "关");
+                config.is_user = false;
             }
             var delta = set_time - now_time;
 
-            if (use.close_enable == true && use.is_close == true && now.Second < 2)
+            if (config.close_enable == true && config.is_close == true && now.Second < 2)
             {
                 int hour, min;
                 hour = now.Hour;
                 min = now.Minute;
-                if (use.close1[0] == hour && use.close1[1] == min)
-                {
+                if (config.close1[0] == hour && config.close1[1] == min)
                     openClose();
-                }
-                if (use.close2[0] == hour && use.close2[1] == min)
-                {
+                if (config.close2[0] == hour && config.close2[1] == min)
                     openClose();
-                }
-                if (use.close3[0] == hour && use.close3[1] == min)
-                {
+                if (config.close3[0] == hour && config.close3[1] == min)
                     openClose();
-                }
             }
 
             Action<int> action = (data) =>
@@ -140,67 +119,43 @@ namespace Color_yr.Countdown
                     label2.Text = " " + delta.Days.ToString();
                 else
                     label2.Text = delta.Days.ToString();
-                if (use.restart == true)
+                if (config.restart == true)
                 {
-                    float newx = use.Width / X_form;//当前宽度与变化前宽度之比
-                    float newy = use.Height / Y_form;//当前高度与变化前宽度之比
-                    Width = use.Width;
-                    Height = use.Height;
-
+                    use use = new use();
+                    float newx = config.countdown_form_Width / X_form;//当前宽度与变化前宽度之比
+                    float newy = config.countdown_form_Height / Y_form;//当前高度与变化前宽度之比
+                    Width = config.countdown_form_Width;
+                    Height = config.countdown_form_Height;
                     use.setControls(newx, newy, this);
-                    switch (use.local)
+                    switch (config.countdown_form_local)
                     {
                         case 1:
                             Left = 0;
                             Top = 0;
                             break;
                         case 2:
-                            Left = Screen.PrimaryScreen.WorkingArea.Width - use.Width;
+                            Left = Screen.PrimaryScreen.WorkingArea.Width - config.countdown_form_Width;
                             Top = 0;
                             break;
                         case 3:
                             Left = 0;
-                            Top = Screen.PrimaryScreen.WorkingArea.Height - use.Height;
+                            Top = Screen.PrimaryScreen.WorkingArea.Height - config.countdown_form_Height;
                             break;
                         case 4:
-                            Left = Screen.PrimaryScreen.WorkingArea.Width - use.Width;
-                            Top = Screen.PrimaryScreen.WorkingArea.Height - use.Height;
+                            Left = Screen.PrimaryScreen.WorkingArea.Width - config.countdown_form_Width;
+                            Top = Screen.PrimaryScreen.WorkingArea.Height - config.countdown_form_Height;
                             break;
                     }
                     Hide();
                     Show();
-                    if (use.is_user == true)
-                        label1.Text = use.user_string;
+                    if (config.is_user == true)
+                        label1.Text = config.user_string;
                     else
                         label1.Text = "距离高考还有：";
-                    switch (use.set_color)
-                    {
-                        case 1:
-                            label2.ForeColor = Color.Red;
-                            break;
-                        case 2:
-                            label2.ForeColor = Color.Yellow;
-                            break;
-                        case 3:
-                            label2.ForeColor = Color.Blue;
-                            break;
-                        case 4:
-                            label2.ForeColor = Color.Green;
-                            break;
-                        case 5:
-                            label2.ForeColor = Color.Cyan;
-                            break;
-                        case 6:
-                            label2.ForeColor = Color.Purple;
-                            break;
-                        case 7:
-                            label2.ForeColor = Color.Black;
-                            break;
-                        case 8:
-                            label2.ForeColor = Color.White;
-                            break;
-                    }
-                    use.restart = false;
+                    
+                    label2.ForeColor = use.form_color(config.countdown_form_color);
+                    label1.ForeColor = label3.ForeColor = use.form_color(config.countdown_form_string_color);
+                    config.restart = false;
                 }
             };
             Invoke(action, 0);
