@@ -172,7 +172,7 @@ namespace Color_yr.Countdown
                 case 3:
                     return Color.Blue;
                 case 4:
-                    return Color.Green;
+                    return Color.GreenYellow;
                 case 5:
                     return Color.Cyan;
                 case 6:
