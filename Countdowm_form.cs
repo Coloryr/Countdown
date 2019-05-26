@@ -88,9 +88,18 @@ namespace Color_yr.Countdown
             {
                 MessageBox.Show("时间错误，请重新设置");
                 XML XML = new XML();
-                XML.write(XML.config, "时间设置", "自定义时间", "关");
+                if (config.is_user == true)
+                    XML.write(XML.config, "时间设置", "自定义时间", "关");
                 config.is_user = false;
+                set_time = new DateTime(config.countdown_form_year, 6, 7, 0, 0, 0);
+                if (set_time < now_time)
+                {
+                    config.countdown_form_year++;
+                    set_time = new DateTime(config.countdown_form_year, 6, 7, 0, 0, 0);
+                    XML.write(XML.config, "时间设置", "设置年份", config.countdown_form_year.ToString());
+                }
             }
+
             var delta = set_time - now_time;
 
             if (config.close_enable == true && config.is_close == true && now.Second < 2)
