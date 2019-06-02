@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="check.cs" />
     <Compile Include="close_form.cs">
       <SubType>Form</SubType>
     </Compile>

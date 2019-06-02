@@ -193,7 +193,7 @@ namespace Color_yr.Countdown
                 time_form_time_color = 1;
                 XML.write(XML.config, "时钟设置", "时间颜色", "红色");
             }
-            time_form_date_color = use.form_color(XML.read(XML.config, "时间设置", "日月颜色"));
+            time_form_date_color = use.form_color(XML.read(XML.config, "时钟设置", "日月颜色"));
             if (time_form_date_color == 0)
             {
                 time_form_date_color = 1;
@@ -204,31 +204,40 @@ namespace Color_yr.Countdown
         {
             XML XML = new XML();
             use use = new use();
-            string text = XML.read(XML.config, "自动关机", "启用");
-            if (text == "开")
+            close_enable = false;
+            if (XML.read(XML.config, "自动关机", "启用") == "开")
                 close_enable = true;
             else
-                close_enable = false;
-            if (use.check_close_time(XML.read(XML.config, "自动关机", "时间1"), close1) == false)
+                return;
+            check check = use.check_close_time(XML.read(XML.config, "自动关机", "时间1"));
+            if (check.is_ok == false)
             {
                 MessageBox.Show("自动关机-时间1错误");
                 close_enable = false;
                 return;
             }
+            else
+                close1 = check.time;
 
-            if (use.check_close_time(XML.read(XML.config, "自动关机", "时间2"), close2) == false)
+            check = use.check_close_time(XML.read(XML.config, "自动关机", "时间2"));
+            if (check.is_ok == false)
             {
                 MessageBox.Show("自动关机-时间2错误");
                 close_enable = false;
                 return;
             }
+            else
+                close2 = check.time;
 
-            if (use.check_close_time(XML.read(XML.config, "自动关机", "时间3"), close3) == false)
+            check = use.check_close_time(XML.read(XML.config, "自动关机", "时间3"));
+            if (check.is_ok == false)
             {
                 MessageBox.Show("自动关机-时间3错误");
                 close_enable = false;
                 return;
             }
+            else
+                close3 = check.time;
 
             switch (XML.read(XML.config, "自动关机", "模式"))
             {

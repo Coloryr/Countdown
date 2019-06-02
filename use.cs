@@ -145,20 +145,23 @@ namespace Color_yr.Countdown
             }
         }
 
-        public bool check_close_time(string time, int[] time1)
+        public check check_close_time(string time)
         {
+            check check = new check();
+            check.is_ok = false;
             if (time.Length != 5)
-                return false;
+                return check;
             int c = int.Parse(time.Substring(0, 2));
             int d = int.Parse(time.Substring(3, 2));
             if (c > 23 && d > 59)
-                return false;
+                return check;
             else
             {
-                time1[0] = c;
-                time1[1] = d;
+                check.time[0] = c;
+                check.time[1] = d;
+                check.is_ok = true;
             }
-            return true;
+            return check;
         }
 
         public Color form_color(int color)
