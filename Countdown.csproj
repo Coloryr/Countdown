@@ -45,7 +45,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -75,42 +75,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="check.cs" />
-    <Compile Include="close_form.cs">
+    <Compile Include="form\close_form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="close_form.Designer.cs">
+    <Compile Include="form\close_form.Designer.cs">
       <DependentUpon>close_form.cs</DependentUpon>
     </Compile>
     <Compile Include="config.cs" />
-    <Compile Include="setting_form.cs">
+    <Compile Include="form\setting_form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="setting_form.Designer.cs">
+    <Compile Include="form\setting_form.Designer.cs">
       <DependentUpon>setting_form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Countdowm_form.cs">
+    <Compile Include="form\Countdowm_form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Countdowm_form.Designer.cs">
+    <Compile Include="form\Countdowm_form.Designer.cs">
       <DependentUpon>Countdowm_form.cs</DependentUpon>
     </Compile>
     <Compile Include="mian.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="time_form.cs">
+    <Compile Include="form\time_form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="time_form.Designer.cs">
+    <Compile Include="form\time_form.Designer.cs">
       <DependentUpon>time_form.cs</DependentUpon>
     </Compile>
     <Compile Include="use.cs" />
     <Compile Include="XML.cs" />
-    <EmbeddedResource Include="close_form.resx">
+    <EmbeddedResource Include="form\close_form.resx">
       <DependentUpon>close_form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="setting_form.resx">
+    <EmbeddedResource Include="form\setting_form.resx">
       <DependentUpon>setting_form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Countdowm_form.resx">
+    <EmbeddedResource Include="form\Countdowm_form.resx">
       <DependentUpon>Countdowm_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -123,7 +123,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="time_form.resx">
+    <EmbeddedResource Include="form\time_form.resx">
       <DependentUpon>time_form.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

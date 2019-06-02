@@ -88,10 +88,9 @@ namespace Color_yr.Countdown
         {
             save_config();
             use use = new use();
-            config config = new config();
-            config.start();
             config.restart = true;
             config.time_restart = true;
+            Close();
         }
 
         private void TextBox_number_check(object sender, KeyPressEventArgs e)
@@ -361,5 +360,9 @@ namespace Color_yr.Countdown
             timer2.Enabled = false;
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Coloryr/Countdown");
+        }
     }
 }
