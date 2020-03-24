@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -8,7 +9,7 @@ namespace Color_yr.Countdown
     {
         public void CloseWindow(int mode)
         {
-            System.Diagnostics.Process bootProcess = new System.Diagnostics.Process();
+            Process bootProcess = new Process();
             bootProcess.StartInfo.FileName = "shutdown";
             if (mode == 0)
             {
