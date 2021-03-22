@@ -1,6 +1,6 @@
-﻿namespace Color_yr.Countdown
+﻿namespace Coloryr.Countdown.Froms
 {
-    partial class time_form
+    partial class TimeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(time_form));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimeForm));
             this.label1 = new LayeredSkin.Controls.LayeredLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.label2 = new LayeredSkin.Controls.LayeredLabel();
@@ -98,7 +98,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "";
-            this.Load += new System.EventHandler(this.time_form_Load);
+            this.Load += new System.EventHandler(this.TimeForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

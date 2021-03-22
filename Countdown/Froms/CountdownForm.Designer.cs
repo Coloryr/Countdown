@@ -1,6 +1,6 @@
-﻿namespace Color_yr.Countdown
+﻿namespace Coloryr.Countdown.Froms
 {
-    partial class Countdown
+    partial class CountdownFrom
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Countdown));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CountdownFrom));
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.label1 = new LayeredSkin.Controls.LayeredLabel();
             this.label2 = new LayeredSkin.Controls.LayeredLabel();
@@ -40,7 +40,7 @@
             // 
             // notifyIcon1
             // 
-            this.notifyIcon1.Icon = Properties.Resources.Color_yr;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "Countdown";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
@@ -136,7 +136,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "";
-            this.Load += new System.EventHandler(this.mian_Load);
+            this.Load += new System.EventHandler(this.From_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

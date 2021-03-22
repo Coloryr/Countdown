@@ -1,9 +1,9 @@
 ﻿
 using System.Windows.Forms;
 
-namespace Color_yr.Countdown
+namespace Coloryr.Countdown.Froms
 {
-    partial class close_form
+    partial class CloseFrom
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@ namespace Color_yr.Countdown
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(close_form));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CloseFrom));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();

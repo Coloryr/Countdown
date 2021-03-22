@@ -3,32 +3,30 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Color_yr.Countdown
+namespace Coloryr.Countdown
 {
-    class use
+    class Utils
     {
-        public void CloseWindow(int mode)
+        public static void CloseWindow()
         {
-            Process bootProcess = new Process();
-            bootProcess.StartInfo.FileName = "shutdown";
-            if (mode == 0)
+            switch (Program.Config.Close.CloseMode)
             {
-                bootProcess.StartInfo.Arguments = "-s";
-                bootProcess.Start();
+                case MyMode.关机:
+                    Process bootProcess = new Process();
+                    bootProcess.StartInfo.FileName = "shutdown";
+                    bootProcess.StartInfo.Arguments = "-s";
+                    bootProcess.Start();
+                    break;
+                case MyMode.休眠:
+                    Application.SetSuspendState(PowerState.Hibernate, false, false);
+                    break;
+                case MyMode.睡眠:
+                    Application.SetSuspendState(PowerState.Suspend, false, false);
+                    break;
             }
-            else if (mode == 1)
-            {
-                Application.SetSuspendState(PowerState.Hibernate, false, false);
-            }
-            else if (mode == 2)
-            { 
-                Application.SetSuspendState(PowerState.Suspend, false, false);
-            }
-            
-            bootProcess.Start();
         }
 
-        public bool isok(KeyPressEventArgs e)
+        public static bool IsOk(KeyPressEventArgs e)
         {
             if (e.KeyChar == '\b')//这是允许输入退格键
                 return true;
@@ -40,17 +38,17 @@ namespace Color_yr.Countdown
         }
 
         //获得控件的长度、宽度、位置、字体大小的数据
-        public static void setTag(Control cons)//Control类，定义控件的基类
+        public static void SetTag(Control cons)//Control类，定义控件的基类
         {
             foreach (Control con in cons.Controls)
             {
                 con.Tag = con.Width + ":" + con.Height + ":" + con.Left + ":" + con.Top + ":" + con.Font.Size;//获取或设置包含有关控件的数据的对象
                 if (con.Controls.Count > 0)
-                    setTag(con);//递归算法
+                    SetTag(con);//递归算法
             }
         }
 
-        public static void setControls(float newx, float newy, Control cons)//实现控件以及字体的缩放
+        public static void SetControls(float newx, float newy, Control cons)//实现控件以及字体的缩放
         {
             foreach (Control con in cons.Controls)
             {
@@ -67,34 +65,31 @@ namespace Color_yr.Countdown
                 con.Font = new Font(con.Font.Name, currentSize, con.Font.Style, con.Font.Unit);
                 if (con.Controls.Count > 0)
                 {
-                    setControls(newx, newy, con);//递归
+                    SetControls(newx, newy, con);//递归
                 }
             }
         }
 
         //月份为两位
-        public int SetDate(string time)
+        public static int SetDate(string time)
         {
-            int intYear;
-            int intMonth;
             int intDay;
             string year = time.Substring(0, 4);
             string month = time.Substring(5, 2);
-            int.TryParse(year, out intYear);
-            int.TryParse(month, out intMonth);
-            if (intMonth == 02)
-            {
-                if (intYear % 400 == 0 || (intYear % 4 == 0 && intYear % 100 != 0))//判断是不是闰年  
-                {
-                    intDay = 29;
-                }
-                else
-                {
-                    intDay = 28;
-                }
-            }
+            int.TryParse(year, out int intYear);
+            int.TryParse(month, out int intMonth);
             switch (intMonth)
             {
+                case 02:
+                    if (intYear % 400 == 0 || (intYear % 4 == 0 && intYear % 100 != 0))//判断是不是闰年  
+                    {
+                        intDay = 29;
+                    }
+                    else
+                    {
+                        intDay = 28;
+                    }
+                    break;
                 case 04:
                 case 06:
                 case 09:
@@ -104,24 +99,7 @@ namespace Color_yr.Countdown
             return intDay;
         }
 
-        public int form_local(string local)
-        {
-            switch (local)
-            {
-                case "左上角":
-                    return 1;
-                case "右上角":
-                    return 2;
-                case "左下角":
-                    return 3;
-                case "右下角":
-                    return 4;
-                default:
-                    return 0;
-            }
-        }
-
-        public int form_color(string color)
+        public static int form_color(string color)
         {
             switch (color)
             {
@@ -146,44 +124,25 @@ namespace Color_yr.Countdown
             }
         }
 
-        public check check_close_time(string time)
-        {
-            check check = new check();
-            check.is_ok = false;
-            if (time.Length != 5)
-                return check;
-            int c = int.Parse(time.Substring(0, 2));
-            int d = int.Parse(time.Substring(3, 2));
-            if (c > 23 && d > 59)
-                return check;
-            else
-            {
-                check.time[0] = c;
-                check.time[1] = d;
-                check.is_ok = true;
-            }
-            return check;
-        }
-
-        public Color form_color(int color)
+        public static Color FontColor(MyColor color)
         {
             switch (color)
             {
-                case 1:
+                case MyColor.红色:
                     return Color.Red;
-                case 2:
+                case MyColor.黄色:
                     return Color.Yellow;
-                case 3:
+                case MyColor.蓝色:
                     return Color.Blue;
-                case 4:
+                case MyColor.绿色:
                     return Color.GreenYellow;
-                case 5:
+                case MyColor.青色:
                     return Color.Cyan;
-                case 6:
+                case MyColor.紫色:
                     return Color.Purple;
-                case 7:
+                case MyColor.黑色:
                     return Color.Black;
-                case 8:
+                case MyColor.白色:
                     return Color.White;
                 default:
                     return Color.Red;
